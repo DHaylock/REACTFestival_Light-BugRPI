@@ -38,7 +38,7 @@ void ofApp::setupColors()
     
     colors b1;
     b1.c = BLUE_1;
-    b1.name = "Green 1";
+    b1.name = "Blue 1";
     
     colors b2;
     b2.c = BLUE_2;
