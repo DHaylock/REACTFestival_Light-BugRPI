@@ -415,6 +415,7 @@ void ofApp::setup()
 {
     doneOnce = false;
     counter = 0;
+    debugLights = false;
     openConfig("configFile.json");
     setupColors();
     setupTrees(8);

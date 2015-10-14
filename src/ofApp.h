@@ -237,6 +237,8 @@ public:
     string dmxController;
     int lightBugBaud;
     
+    bool debugLights;
+    
     ofColor RED_1;
     ofColor RED_2;
     ofColor RED_3;
