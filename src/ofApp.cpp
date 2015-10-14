@@ -88,6 +88,8 @@ void ofApp::openConfig(string configFile)
         return;
     }
     
+    debugLights = config["debugLights"].asBool();
+    
     RED_1 = ofColor(config["colors"][0]["red1"]["r"].asInt(),config["colors"][0]["red1"]["g"].asInt(),config["colors"][0]["red1"]["b"].asInt());
     
     RED_2 = ofColor(config["colors"][1]["red2"]["r"].asInt(),config["colors"][1]["red2"]["g"].asInt(),config["colors"][1]["red2"]["b"].asInt());
