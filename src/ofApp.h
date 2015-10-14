@@ -174,7 +174,11 @@
 #define T8_ON_WH "8OWH"
 #define T8_OFF "8OFF"
 
-#define DELIMIT ","
+
+struct colors {
+    string name;
+    ofColor c;
+};
 //------------------------------------------------
 class ofApp : public ofBaseApp{
     
@@ -217,7 +221,7 @@ public:
     
     // Make the colors
     void setupColors();
-    vector <ofColor> colorsArray;
+    vector <colors> colorsArray;
     int counter;
     
     void setupTestSequence();
@@ -248,5 +252,5 @@ public:
     ofColor WHITE;
     ofColor OFF;
     
-    
+    ofTrueTypeFont treeNames;
 };

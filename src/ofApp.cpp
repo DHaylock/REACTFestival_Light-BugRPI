@@ -4,23 +4,79 @@
 //--------------------------------------------------------------
 void ofApp::setupColors()
 {
-    colorsArray.push_back(RED_1);
-    colorsArray.push_back(RED_2);
-    colorsArray.push_back(RED_3);
-    colorsArray.push_back(RED_4);
+    colors r1;
+    r1.c = RED_1;
+    r1.name = "Red 1";
     
-    colorsArray.push_back(GREEN_1);
-    colorsArray.push_back(GREEN_2);
-    colorsArray.push_back(GREEN_3);
-    colorsArray.push_back(GREEN_4);
+    colors r2;
+    r2.c = RED_2;
+    r2.name = "Red 2";
     
-    colorsArray.push_back(BLUE_1);
-    colorsArray.push_back(BLUE_2);
-    colorsArray.push_back(BLUE_3);
-    colorsArray.push_back(BLUE_4);
+    colors r3;
+    r3.c = RED_3;
+    r3.name = "Red 3";
     
-    colorsArray.push_back(WHITE);
-    colorsArray.push_back(OFF);
+    colors r4;
+    r4.c = RED_4;
+    r4.name = "Red 4";
+    
+    colors g1;
+    g1.c = GREEN_1;
+    g1.name = "Green 1";
+    
+    colors g2;
+    g2.c = GREEN_2;
+    g2.name = "Green 2";
+    
+    colors g3;
+    g3.c = GREEN_3;
+    g3.name = "Green 3";
+    
+    colors g4;
+    g4.c = GREEN_4;
+    g4.name = "Green 4";
+    
+    colors b1;
+    b1.c = BLUE_1;
+    b1.name = "Green 1";
+    
+    colors b2;
+    b2.c = BLUE_2;
+    b2.name = "Blue 2";
+    
+    colors b3;
+    b3.c = BLUE_3;
+    b3.name = "Blue 3";
+    
+    colors b4;
+    b4.c = BLUE_4;
+    b4.name = "Blue 4";
+    
+    colors w;
+    w.c = WHITE;
+    w.name = "White";
+    
+    colors bl;
+    bl.c = OFF;
+    bl.name = "Black";
+    
+    colorsArray.push_back(r1);
+    colorsArray.push_back(r2);
+    colorsArray.push_back(r3);
+    colorsArray.push_back(r4);
+    
+    colorsArray.push_back(g1);
+    colorsArray.push_back(g2);
+    colorsArray.push_back(g3);
+    colorsArray.push_back(g4);
+    
+    colorsArray.push_back(b1);
+    colorsArray.push_back(b2);
+    colorsArray.push_back(b3);
+    colorsArray.push_back(b4);
+    
+    colorsArray.push_back(w);
+    colorsArray.push_back(bl);
 }
 //--------------------------------------------------------------
 void ofApp::openConfig(string configFile)
@@ -356,13 +412,14 @@ void ofApp::onNewMessage(string & message)
 void ofApp::setup()
 {
     doneOnce = false;
+    counter = 0;
     openConfig("configFile.json");
     setupColors();
-    counter = 0;
     setupTrees(8);
     setupDMX("/dev/ttyUSB0");
-    
     setupTestSequence();
+    treeNames.loadFont("NewMedia Fett.ttf", 15);
+    
 //    lightBug.setup("/dev/tty.usbmodem1421",19200);
 //    nTimesRead = 0;
 //    nBytesRead = 0;
@@ -401,13 +458,28 @@ void ofApp::draw()
 {
     ofBackground(50);
     for(int i = 0; i < colorsArray.size(); i++) {
-        ofSetColor(colorsArray[i]);
+        ofSetColor(colorsArray[i].c);
         ofCircle(25, (ofGetHeight()/2-(colorsArray.size()/2*25))+(i*25), 10);
+        ofSetColor(255, 255, 255);
+        treeNames.drawString(colorsArray[i].name, 40, (ofGetHeight()/2-(colorsArray.size()/2*25))+(i*25)+5);
     }
     
     for (int i = 0; i < trees.size(); i++) {
-        trees[i].draw((ofGetWidth()/2-(trees.size()/2*75))+(i*100), ofGetHeight()/2);
+        trees[i].draw((ofGetWidth()/2-(trees.size()/2*75))+(i*100), 100);
+        ofSetColor(255);
+        ofPushMatrix();
+        ofTranslate((ofGetWidth()/2-(trees.size()/2*75))+(i*100)-35, 100+85);
+        ofRotateZ(-45);
+        ofPushMatrix();
+        treeNames.drawString("Tree "+ ofToString(i+1), 0, 0);
+        ofPopMatrix();
+        ofPopMatrix();
     }
+    ofSetColor(255);
+    ofPushMatrix();
+    ofScale(2.5, 2.5);
+    treeNames.drawString("LIGHT BUG", 5, 20);
+    ofPopMatrix();
 }
 //--------------------------------------------------------------
 void ofApp::exit()
