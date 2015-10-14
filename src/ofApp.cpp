@@ -355,28 +355,22 @@ void ofApp::onNewMessage(string & message)
 //--------------------------------------------------------------
 void ofApp::setup()
 {
-    //    message = "";
     doneOnce = false;
     openConfig("configFile.json");
     setupColors();
     counter = 0;
     setupTrees(8);
-    setupDMX("/dev/tty.usbserial-EN150288");
+    setupDMX("/dev/ttyUSB0");
     
     setupTestSequence();
-    lightBug.setup("/dev/tty.usbmodem1421",19200);
-    nTimesRead = 0;
-    nBytesRead = 0;
-    readTime = 0;
-    memset(bytesReadString, 0, 6);
+//    lightBug.setup("/dev/tty.usbmodem1421",19200);
+//    nTimesRead = 0;
+//    nBytesRead = 0;
+//    readTime = 0;
+//    memset(bytesReadString, 0, 6);
     
-    //    lightBug.startContinuousRead();
-    //    lightBug.drain();
-    //    lightBug.flush();
-    
-    //    ofAddListener(lightBug.NEW_MESSAGE,this,&ofApp::onNewMessage);
 }
-//#pragma mark - Updates
+
 //--------------------------------------------------------------
 void ofApp::updateDMX()
 {
@@ -397,32 +391,11 @@ void ofApp::update()
     }
     
     if(ofGetFrameNum() % 10 == 0) {
-//        nTimesRead = 0;
-//        nBytesRead = 0;
-//        int nRead  = 0;  // a temp variable to keep count per read
-//        
-//        unsigned char bytesReturned[5];
-//        
-//        memset(bytesReadString, 0, 6);
-//        memset(bytesReturned, 0, 5);
-//        
-//        while( (nRead = lightBug.readBytes( bytesReturned, 5)) > 0){
-//            nTimesRead++;
-//            nBytesRead = nRead;
-//        };
-//        
-//        memcpy(bytesReadString, bytesReturned, 5);
-//        cout << bytesReadString << endl;
-//        string m = ofToString(bytesReadString);
-//        onNewMessage(m);
-
         onNewMessage(testSequence[counter]);
         counter++;
     }
-
     updateDMX();
 }
-//#pragma mark - Draw
 //--------------------------------------------------------------
 void ofApp::draw()
 {
