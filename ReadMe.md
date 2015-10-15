@@ -48,8 +48,7 @@ The command would be:
 Here is a full list of the commands.
 
 Block Colors
-````
-ALL_OFF "AOFF"
+````ALL_OFF "AOFF"
 ALL_ON_WHITE "AOWH"
 ALL_ON_R1 "AOR1"
 ALL_ON_R2 "AOR2"
@@ -62,13 +61,11 @@ ALL_ON_G4 "AOG4"
 ALL_ON_B1 "AOB1"
 ALL_ON_B2 "AOB2"
 ALL_ON_B3 "AOB3"
-ALL_ON_B4 "AOB4"
-````
+ALL_ON_B4 "AOB4"````
 
 Individual Lights
 Replace the * with the light number.
-````
-T*_ON_R1 "*OR1"
+````T*_ON_R1 "*OR1"
 T*_ON_R2 "*OR2"
 T*_ON_R3 "*OR3"
 T*_ON_R4 "*OR4"
@@ -81,5 +78,4 @@ T*_ON_B2 "*OB2"
 T*_ON_B3 "*OB3"
 T*_ON_B4 "*OB4"
 T*_ON_WH "*OWH"
-T*_OFF "*OFF"
-````
+T*_OFF "*OFF" ````
