@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "ofxDmx.h"
 #include "ofxJSON.h"
-//#include "ofxSimpleSerial.h"
+#include "ofxSimpleTimer.h"
 #include "tree.h"
 
 //------------------------------------------------
@@ -181,64 +181,60 @@ struct colors {
 };
 //------------------------------------------------
 class ofApp : public ofBaseApp{
-    
+
 public:
     void setup();
     void update();
     void draw();
-    
+
     void exit();
-    
+
     void keyPressed(int key);
     void keyReleased(int key);
-    
-    
+
+
     // Trees
     void setupTrees(int numberOfTrees);
     vector <Tree> trees;
-    
+
     // DMX Stuff
     void setupDMX(string device);
     void updateDMX();
     void drawDMX();
-    
+
     ofxDmx enttecBox;
     bool dmxConnected;
-    
+
     // Serial/UART IN
     void setupLightBugConnection(string device,int baud);
     void updateLightBug();
-    
+
     ofSerial lightBug;
-    void onNewMessage(string & message);
+    void onNewMessage(string message);
     bool		requestRead;
-    bool		bSendSerialMessage;
-    char		bytesRead[5];
-    char		bytesReadString[6];
-    int			nBytesRead;
-    int			nTimesRead;
-    float		readTime;
-    
+    unsigned char	bytesReturned[1];
+    string messageBuffer;
+
+    void setupTestSequence();
+    vector<string> testSequence;
+
+    vector <string> split;
+    bool doneOnce;
+
+    // Load the Config File
+    void openConfig(string configFile);
+    ofxJSONElement config;
+
+    string serialInLightBug;
+    string dmxController;
+    int lightBugBaud;
+    bool debugLights;
+
     // Make the colors
     void setupColors();
     vector <colors> colorsArray;
     int counter;
-    
-    void setupTestSequence();
-    vector<string> testSequence;
-    
-    vector <string> split;
-    bool doneOnce;
-    
-    // Load the Config File
-    void openConfig(string configFile);
-    ofxJSONElement config;
-    string serialInLightBug;
-    string dmxController;
-    int lightBugBaud;
-    
-    bool debugLights;
-    
+
     ofColor RED_1;
     ofColor RED_2;
     ofColor RED_3;
@@ -253,6 +249,10 @@ public:
     ofColor BLUE_4;
     ofColor WHITE;
     ofColor OFF;
-    
+
     ofTrueTypeFont treeNames;
+
+    ofxSimpleTimer timer1 ;
+    void timer1CompleteHandler( int &args ) ;
+    void timer1StartedHandler( int &args ) ;
 };
