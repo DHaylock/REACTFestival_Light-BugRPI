@@ -455,7 +455,7 @@ void ofApp::setup()
     timer1.start( true ) ;
     ofAddListener( timer1.TIMER_COMPLETE , this, &ofApp::timer1CompleteHandler ) ;
     ofAddListener( timer1.TIMER_STARTED , this, &ofApp::timer1StartedHandler ) ;
-//    lightBug.setup("/dev/tty.usbmodem1421",19200);
+    lightBug.setup("/dev/ttyAMA0",19200);
 }
 //--------------------------------------------------------------
 void ofApp::updateDMX()
