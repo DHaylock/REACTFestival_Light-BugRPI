@@ -45,8 +45,8 @@ public:
     //--------------------------------------------------------------
     void setColor(ofColor c)
     {
-        cout << "ID: " << _id << " Original Color " << getColor() << endl;
-        cout << "ID: " << _id << " New Color " << c << endl;
+//        cout << "ID: " << _id << " Original Color " << getColor() << endl;
+//        cout << "ID: " << _id << " New Color " << c << endl;
         _C = c;
     }
     //--------------------------------------------------------------

@@ -81,7 +81,8 @@ void ofApp::idleTimerCompleted(int &args)
     cout<<"Idle Timer Completed Showing Win Lights!"<<endl;
     resetTimer.setup(7000);
     resetTimer.start(false);
-}//--------------------------------------------------------------
+}
+//--------------------------------------------------------------
 void ofApp::readTimerStarted( int &args )
 {
     
