@@ -14,6 +14,15 @@ It takes commands from the Light Bug Swing through UART and outputs DMX signals.
 * 1 x [4 Channel Bi-Directional Logic Level Convertor](https://www.coolcomponents.co.uk/logic-level-converter-bi-directional.html)
 * 16 x RGB DMX Controlled Lights. Set to RGB 3 channel mode
 
+####How to Compile
+After either sshing in or using a monitor and keyboard, move into the directory.
+
+````cd openFrameworks/apps/myApps/REACTFestival_Light-BugRPI````
+
+Then
+
+````make run````
+
 ####Connections
 You will need to plug the DMXPro into the RPI via the USB Hub, its address is generally /dev/ttyUSB0
 Otherwise check the port list
