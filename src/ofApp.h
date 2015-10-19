@@ -257,11 +257,17 @@ public:
     
     ofxSimpleTimer readTimer;
     ofxSimpleTimer idleTimer;
+    ofxSimpleTimer resetTimer;
+
     bool idle;
+    bool reset;
     
     void        readTimerComplete(int &args) ;
     void        readTimerStarted(int &args) ;
     
     void        idleTimerCompleted(int &args);
     void        idleTimerStarted(int &args);
+    
+    void        resetTimerCompleted(int &args);
+    void        resetTimerStarted(int &args);
 };

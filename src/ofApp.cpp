@@ -59,6 +59,17 @@ void ofApp::setupTrees(int numberOfTrees)
     }
 }
 //--------------------------------------------------------------
+void ofApp::resetTimerStarted(int &args)
+{
+    cout<<"Reset Timer Started!"<<endl;
+}
+//--------------------------------------------------------------
+void ofApp::resetTimerCompleted(int &args)
+{
+    cout<<"Reset Timer Completed!"<<endl;
+    reset = false;
+}
+//--------------------------------------------------------------
 void ofApp::idleTimerStarted(int &args)
 {
     cout<<"Idle Timer Started!"<<endl;
@@ -67,9 +78,10 @@ void ofApp::idleTimerStarted(int &args)
 void ofApp::idleTimerCompleted(int &args)
 {
     idle = false;
-    cout<<"Idle Timer Completed Resetting Lights!"<<endl;
-}
-//--------------------------------------------------------------
+    cout<<"Idle Timer Completed Showing Win Lights!"<<endl;
+    resetTimer.setup(7000);
+    resetTimer.start(false);
+}//--------------------------------------------------------------
 void ofApp::readTimerStarted( int &args )
 {
     
@@ -269,6 +281,7 @@ void ofApp::setup()
     
     doneOnce = false;
     idle = true;
+    reset = true;
     openConfig("configFile.json");
     setupColors();
     counter = 0;
@@ -281,10 +294,13 @@ void ofApp::setup()
     readTimer.start(true) ;
     ofAddListener(readTimer.TIMER_COMPLETE, this, &ofApp::readTimerComplete);
     ofAddListener(readTimer.TIMER_STARTED, this, &ofApp::readTimerStarted);
-    idleTimer.setup(15000);
-    idleTimer.start(false);
+//    idleTimer.setup(15000);
+//    idleTimer.start(false);
     ofAddListener(idleTimer.TIMER_COMPLETE, this, &ofApp::idleTimerCompleted) ;
     ofAddListener(idleTimer.TIMER_STARTED, this, &ofApp::idleTimerStarted) ;
+    
+    ofAddListener(resetTimer.TIMER_COMPLETE, this, &ofApp::resetTimerCompleted);
+    ofAddListener(resetTimer.TIMER_STARTED, this, &ofApp::resetTimerStarted);
 }
 //--------------------------------------------------------------
 void ofApp::updateDMX()
@@ -301,6 +317,7 @@ void ofApp::update()
 {
     readTimer.update();
     idleTimer.update();
+    resetTimer.update();
     string command = "";
     
     if (!doneOnce) {
@@ -334,23 +351,23 @@ void ofApp::update()
                     if (trees[tr].getColor() != resetIdleColor) {
                         idleColor.set(trees[tr].getColor());
                         if (idleColor.r < resetIdleColor.r) {
-                            idleColor.r += 1;
+                            idleColor.r += 3;
                         }
                         else if(idleColor.r > resetIdleColor.r) {
-                            idleColor.r -= 1;
+                            idleColor.r -= 3;
                         }
                         
                         if (idleColor.g < resetIdleColor.g) {
-                            idleColor.g += 1;
+                            idleColor.g += 3;
                         }
                         else if (idleColor.g > resetIdleColor.g) {
-                            idleColor.g -= 1;
+                            idleColor.g -= 3;
                         }
                         if(idleColor.b < resetIdleColor.b) {
-                            idleColor.b += 1;
+                            idleColor.b += 3;
                         }
                         else if(idleColor.b > resetIdleColor.b) {
-                            idleColor.b -= 1;
+                            idleColor.b -= 3;
                         }
                         trees[tr].setColor(idleColor);
                     }
@@ -359,6 +376,16 @@ void ofApp::update()
                         idle = true;
                     }
                 }
+            }
+        }
+        
+        if (!reset) {
+            ofColor tmpResetColor = ofColor(50,25,25);
+            for (int tr = 0; tr < trees.size();  tr++) {
+                ofColor resetColor;
+                trees[tr].setColor(tmpResetColor);
+                trees[tr].setIsTreeOn(false);
+                reset = true;
             }
         }
     }
