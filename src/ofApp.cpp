@@ -308,6 +308,7 @@ void ofApp::update()
             counter = testSequence.size()-1;
             for (int tr = 0; tr < trees.size();  tr++) {
                 trees[tr].setColor(OFF);
+                trees[tr].setIsTreeOn(false);
             }
             doneOnce = true;
         }
