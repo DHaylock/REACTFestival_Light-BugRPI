@@ -315,9 +315,7 @@ void ofApp::updateDMX()
 //--------------------------------------------------------------
 void ofApp::update()
 {
-    readTimer.update();
-    idleTimer.update();
-    resetTimer.update();
+    
     string command = "";
     
     if (!doneOnce) {
@@ -395,6 +393,10 @@ void ofApp::update()
 //--------------------------------------------------------------
 void ofApp::draw()
 {
+    readTimer.update();
+    idleTimer.update();
+    resetTimer.update();
+    
     ofBackground(50);
     for(int i = 0; i < colorsArray.size(); i++) {
         ofSetColor(colorsArray[i].c);
