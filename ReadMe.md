@@ -34,7 +34,7 @@ These commands are prefixed with a # which validates the command and allows the 
 
 For example if I want to tell all the lights to turn off, I call
 
-```` #AOFF\n ````
+```#AOFF\n```
 
 The new line signals to the app to fire the message and clear the port ready for the next command.
 

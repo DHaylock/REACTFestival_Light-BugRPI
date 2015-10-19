@@ -1,83 +1,4 @@
 #include "ofApp.h"
-
-//#pragma mark - Setups
-//--------------------------------------------------------------
-void ofApp::setupColors()
-{
-    colors r1;
-    r1.c = RED_1;
-    r1.name = "Red 1";
-
-    colors r2;
-    r2.c = RED_2;
-    r2.name = "Red 2";
-
-    colors r3;
-    r3.c = RED_3;
-    r3.name = "Red 3";
-
-    colors r4;
-    r4.c = RED_4;
-    r4.name = "Red 4";
-
-    colors g1;
-    g1.c = GREEN_1;
-    g1.name = "Green 1";
-
-    colors g2;
-    g2.c = GREEN_2;
-    g2.name = "Green 2";
-
-    colors g3;
-    g3.c = GREEN_3;
-    g3.name = "Green 3";
-
-    colors g4;
-    g4.c = GREEN_4;
-    g4.name = "Green 4";
-
-    colors b1;
-    b1.c = BLUE_1;
-    b1.name = "Blue 1";
-
-    colors b2;
-    b2.c = BLUE_2;
-    b2.name = "Blue 2";
-
-    colors b3;
-    b3.c = BLUE_3;
-    b3.name = "Blue 3";
-
-    colors b4;
-    b4.c = BLUE_4;
-    b4.name = "Blue 4";
-
-    colors w;
-    w.c = WHITE;
-    w.name = "White";
-
-    colors bl;
-    bl.c = OFF;
-    bl.name = "Black";
-
-    colorsArray.push_back(r1);
-    colorsArray.push_back(r2);
-    colorsArray.push_back(r3);
-    colorsArray.push_back(r4);
-
-    colorsArray.push_back(g1);
-    colorsArray.push_back(g2);
-    colorsArray.push_back(g3);
-    colorsArray.push_back(g4);
-
-    colorsArray.push_back(b1);
-    colorsArray.push_back(b2);
-    colorsArray.push_back(b3);
-    colorsArray.push_back(b4);
-
-    colorsArray.push_back(w);
-    colorsArray.push_back(bl);
-}
 //--------------------------------------------------------------
 void ofApp::openConfig(string configFile)
 {
@@ -106,6 +27,11 @@ void ofApp::openConfig(string configFile)
     OFF = ofColor(0,0,0);
 }
 //--------------------------------------------------------------
+// *
+// * Setup DMX Unit
+// * The DMX Addresses are generated here
+// *
+//--------------------------------------------------------------
 void ofApp::setupDMX(string device)
 {
     enttecBox.connect(device);
@@ -119,146 +45,10 @@ void ofApp::setupDMX(string device)
     }
 }
 //--------------------------------------------------------------
-void ofApp::setupTestSequence()
-{
-    testSequence.push_back("#"+ofToString(ALL_OFF));
-    testSequence.push_back("#"+ofToString(T1_ON_R1));
-    testSequence.push_back("#"+ofToString(T1_ON_R1)+","+ofToString(T2_ON_R1));
-    testSequence.push_back("#"+ofToString(T1_ON_R1)+","+ofToString(T2_ON_R1)+","+ofToString(T3_ON_R1));
-    testSequence.push_back("#"+ofToString(T1_ON_R1)+","+ofToString(T2_ON_R1)+","+ofToString(T3_ON_R1)+","+ofToString(T4_ON_R1));
-    testSequence.push_back("#"+ofToString(T1_ON_R1)+","+ofToString(T2_ON_R1)+","+ofToString(T3_ON_R1)+","+ofToString(T4_ON_R1)+","+ofToString(T5_ON_R1));
-    testSequence.push_back("#"+ofToString(T1_ON_R1)+","+ofToString(T2_ON_R1)+","+ofToString(T3_ON_R1)+","+ofToString(T4_ON_R1)+","+ofToString(T5_ON_R1)+","+ofToString(T6_ON_R1));
-    testSequence.push_back("#"+ofToString(T1_ON_R1)+","+ofToString(T2_ON_R1)+","+ofToString(T3_ON_R1)+","+ofToString(T4_ON_R1)+","+ofToString(T5_ON_R1)+","+ofToString(T6_ON_R1)+","+ofToString(T7_ON_R1));
-    testSequence.push_back("#"+ofToString(T1_ON_R1)+","+ofToString(T2_ON_R1)+","+ofToString(T3_ON_R1)+","+ofToString(T4_ON_R1)+","+ofToString(T5_ON_R1)+","+ofToString(T6_ON_R1)+","+ofToString(T7_ON_R1)+","+ofToString(T8_ON_R1));
-
-    testSequence.push_back("#"+ofToString(T1_ON_G1));
-    testSequence.push_back("#"+ofToString(T1_ON_G1)+","+ofToString(T2_ON_G1));
-    testSequence.push_back("#"+ofToString(T1_ON_G1)+","+ofToString(T2_ON_G1)+","+ofToString(T3_ON_G1));
-    testSequence.push_back("#"+ofToString(T1_ON_G1)+","+ofToString(T2_ON_G1)+","+ofToString(T3_ON_G1)+","+ofToString(T4_ON_G1));
-    testSequence.push_back("#"+ofToString(T1_ON_G1)+","+ofToString(T2_ON_G1)+","+ofToString(T3_ON_G1)+","+ofToString(T4_ON_G1)+","+ofToString(T5_ON_G1));
-    testSequence.push_back("#"+ofToString(T1_ON_G1)+","+ofToString(T2_ON_G1)+","+ofToString(T3_ON_G1)+","+ofToString(T4_ON_G1)+","+ofToString(T5_ON_G1)+","+ofToString(T6_ON_G1));
-    testSequence.push_back("#"+ofToString(T1_ON_G1)+","+ofToString(T2_ON_G1)+","+ofToString(T3_ON_G1)+","+ofToString(T4_ON_G1)+","+ofToString(T5_ON_G1)+","+ofToString(T6_ON_G1)+","+ofToString(T7_ON_G1));
-    testSequence.push_back("#"+ofToString(T1_ON_G1)+","+ofToString(T2_ON_G1)+","+ofToString(T3_ON_G1)+","+ofToString(T4_ON_G1)+","+ofToString(T5_ON_G1)+","+ofToString(T6_ON_G1)+","+ofToString(T7_ON_G1)+","+ofToString(T8_ON_G1));
-
-    testSequence.push_back("#"+ofToString(T1_ON_B1));
-    testSequence.push_back("#"+ofToString(T1_ON_B1)+","+ofToString(T2_ON_B1));
-    testSequence.push_back("#"+ofToString(T1_ON_B1)+","+ofToString(T2_ON_B1)+","+ofToString(T3_ON_B1));
-    testSequence.push_back("#"+ofToString(T1_ON_B1)+","+ofToString(T2_ON_B1)+","+ofToString(T3_ON_B1)+","+ofToString(T4_ON_B1));
-    testSequence.push_back("#"+ofToString(T1_ON_B1)+","+ofToString(T2_ON_B1)+","+ofToString(T3_ON_B1)+","+ofToString(T4_ON_B1)+","+ofToString(T5_ON_B1));
-    testSequence.push_back("#"+ofToString(T1_ON_B1)+","+ofToString(T2_ON_B1)+","+ofToString(T3_ON_B1)+","+ofToString(T4_ON_B1)+","+ofToString(T5_ON_B1)+","+ofToString(T6_ON_B1));
-    testSequence.push_back("#"+ofToString(T1_ON_B1)+","+ofToString(T2_ON_B1)+","+ofToString(T3_ON_B1)+","+ofToString(T4_ON_B1)+","+ofToString(T5_ON_B1)+","+ofToString(T6_ON_B1)+","+ofToString(T7_ON_B1));
-    testSequence.push_back("#"+ofToString(T1_ON_B1)+","+ofToString(T2_ON_B1)+","+ofToString(T3_ON_B1)+","+ofToString(T4_ON_B1)+","+ofToString(T5_ON_B1)+","+ofToString(T6_ON_B1)+","+ofToString(T7_ON_B1)+","+ofToString(T8_ON_B1));
-
-    testSequence.push_back("#"+ofToString(T1_ON_R2));
-    testSequence.push_back("#"+ofToString(T1_ON_R2)+","+ofToString(T2_ON_R2));
-    testSequence.push_back("#"+ofToString(T1_ON_R2)+","+ofToString(T2_ON_R2)+","+ofToString(T3_ON_R2));
-    testSequence.push_back("#"+ofToString(T1_ON_R2)+","+ofToString(T2_ON_R2)+","+ofToString(T3_ON_R2)+","+ofToString(T4_ON_R2));
-    testSequence.push_back("#"+ofToString(T1_ON_R2)+","+ofToString(T2_ON_R2)+","+ofToString(T3_ON_R2)+","+ofToString(T4_ON_R2)+","+ofToString(T5_ON_R2));
-    testSequence.push_back("#"+ofToString(T1_ON_R2)+","+ofToString(T2_ON_R2)+","+ofToString(T3_ON_R2)+","+ofToString(T4_ON_R2)+","+ofToString(T5_ON_R2)+","+ofToString(T6_ON_R2));
-    testSequence.push_back("#"+ofToString(T1_ON_R2)+","+ofToString(T2_ON_R2)+","+ofToString(T3_ON_R2)+","+ofToString(T4_ON_R2)+","+ofToString(T5_ON_R2)+","+ofToString(T6_ON_R2)+","+ofToString(T7_ON_R2));
-    testSequence.push_back("#"+ofToString(T1_ON_R2)+","+ofToString(T2_ON_R2)+","+ofToString(T3_ON_R2)+","+ofToString(T4_ON_R2)+","+ofToString(T5_ON_R2)+","+ofToString(T6_ON_R2)+","+ofToString(T7_ON_R2)+","+ofToString(T8_ON_R2));
-
-    testSequence.push_back("#"+ofToString(T1_ON_G2));
-    testSequence.push_back("#"+ofToString(T1_ON_G2)+","+ofToString(T2_ON_G2));
-    testSequence.push_back("#"+ofToString(T1_ON_G2)+","+ofToString(T2_ON_G2)+","+ofToString(T3_ON_G2));
-    testSequence.push_back("#"+ofToString(T1_ON_G2)+","+ofToString(T2_ON_G2)+","+ofToString(T3_ON_G2)+","+ofToString(T4_ON_G2));
-    testSequence.push_back("#"+ofToString(T1_ON_G2)+","+ofToString(T2_ON_G2)+","+ofToString(T3_ON_G2)+","+ofToString(T4_ON_G2)+","+ofToString(T5_ON_G2));
-    testSequence.push_back("#"+ofToString(T1_ON_G2)+","+ofToString(T2_ON_G2)+","+ofToString(T3_ON_G2)+","+ofToString(T4_ON_G2)+","+ofToString(T5_ON_G2)+","+ofToString(T6_ON_G2));
-    testSequence.push_back("#"+ofToString(T1_ON_G2)+","+ofToString(T2_ON_G2)+","+ofToString(T3_ON_G2)+","+ofToString(T4_ON_G2)+","+ofToString(T5_ON_G2)+","+ofToString(T6_ON_G2)+","+ofToString(T7_ON_G2));
-    testSequence.push_back("#"+ofToString(T1_ON_G2)+","+ofToString(T2_ON_G2)+","+ofToString(T3_ON_G2)+","+ofToString(T4_ON_G2)+","+ofToString(T5_ON_G2)+","+ofToString(T6_ON_G2)+","+ofToString(T7_ON_G2)+","+ofToString(T8_ON_G2));
-
-    testSequence.push_back("#"+ofToString(T1_ON_B2));
-    testSequence.push_back("#"+ofToString(T1_ON_B2)+","+ofToString(T2_ON_B2));
-    testSequence.push_back("#"+ofToString(T1_ON_B2)+","+ofToString(T2_ON_B2)+","+ofToString(T3_ON_B2));
-    testSequence.push_back("#"+ofToString(T1_ON_B2)+","+ofToString(T2_ON_B2)+","+ofToString(T3_ON_B2)+","+ofToString(T4_ON_B2));
-    testSequence.push_back("#"+ofToString(T1_ON_B2)+","+ofToString(T2_ON_B2)+","+ofToString(T3_ON_B2)+","+ofToString(T4_ON_B2)+","+ofToString(T5_ON_B2));
-    testSequence.push_back("#"+ofToString(T1_ON_B2)+","+ofToString(T2_ON_B2)+","+ofToString(T3_ON_B2)+","+ofToString(T4_ON_B2)+","+ofToString(T5_ON_B2)+","+ofToString(T6_ON_B2));
-    testSequence.push_back("#"+ofToString(T1_ON_B2)+","+ofToString(T2_ON_B2)+","+ofToString(T3_ON_B2)+","+ofToString(T4_ON_B2)+","+ofToString(T5_ON_B2)+","+ofToString(T6_ON_B2)+","+ofToString(T7_ON_B2));
-    testSequence.push_back("#"+ofToString(T1_ON_B2)+","+ofToString(T2_ON_B2)+","+ofToString(T3_ON_B2)+","+ofToString(T4_ON_B2)+","+ofToString(T5_ON_B2)+","+ofToString(T6_ON_B2)+","+ofToString(T7_ON_B2)+","+ofToString(T8_ON_B2));
-
-    testSequence.push_back("#"+ofToString(T1_ON_R3));
-    testSequence.push_back("#"+ofToString(T1_ON_R3)+","+ofToString(T2_ON_R3));
-    testSequence.push_back("#"+ofToString(T1_ON_R3)+","+ofToString(T2_ON_R3)+","+ofToString(T3_ON_R3));
-    testSequence.push_back("#"+ofToString(T1_ON_R3)+","+ofToString(T2_ON_R3)+","+ofToString(T3_ON_R3)+","+ofToString(T4_ON_R3));
-    testSequence.push_back("#"+ofToString(T1_ON_R3)+","+ofToString(T2_ON_R3)+","+ofToString(T3_ON_R3)+","+ofToString(T4_ON_R3)+","+ofToString(T5_ON_R3));
-    testSequence.push_back("#"+ofToString(T1_ON_R3)+","+ofToString(T2_ON_R3)+","+ofToString(T3_ON_R3)+","+ofToString(T4_ON_R3)+","+ofToString(T5_ON_R3)+","+ofToString(T6_ON_R3));
-    testSequence.push_back("#"+ofToString(T1_ON_R3)+","+ofToString(T2_ON_R3)+","+ofToString(T3_ON_R3)+","+ofToString(T4_ON_R3)+","+ofToString(T5_ON_R3)+","+ofToString(T6_ON_R3)+","+ofToString(T7_ON_R3));
-    testSequence.push_back("#"+ofToString(T1_ON_R3)+","+ofToString(T2_ON_R3)+","+ofToString(T3_ON_R3)+","+ofToString(T4_ON_R3)+","+ofToString(T5_ON_R3)+","+ofToString(T6_ON_R3)+","+ofToString(T7_ON_R3)+","+ofToString(T8_ON_R3));
-
-    testSequence.push_back("#"+ofToString(T1_ON_G3));
-    testSequence.push_back("#"+ofToString(T1_ON_G3)+","+ofToString(T2_ON_G3));
-    testSequence.push_back("#"+ofToString(T1_ON_G3)+","+ofToString(T2_ON_G3)+","+ofToString(T3_ON_G3));
-    testSequence.push_back("#"+ofToString(T1_ON_G3)+","+ofToString(T2_ON_G3)+","+ofToString(T3_ON_G3)+","+ofToString(T4_ON_G3));
-    testSequence.push_back("#"+ofToString(T1_ON_G3)+","+ofToString(T2_ON_G3)+","+ofToString(T3_ON_G3)+","+ofToString(T4_ON_G3)+","+ofToString(T5_ON_G3));
-    testSequence.push_back("#"+ofToString(T1_ON_G3)+","+ofToString(T2_ON_G3)+","+ofToString(T3_ON_G3)+","+ofToString(T4_ON_G3)+","+ofToString(T5_ON_G3)+","+ofToString(T6_ON_G3));
-    testSequence.push_back("#"+ofToString(T1_ON_G3)+","+ofToString(T2_ON_G3)+","+ofToString(T3_ON_G3)+","+ofToString(T4_ON_G3)+","+ofToString(T5_ON_G3)+","+ofToString(T6_ON_G3)+","+ofToString(T7_ON_G3));
-    testSequence.push_back("#"+ofToString(T1_ON_G3)+","+ofToString(T2_ON_G3)+","+ofToString(T3_ON_G3)+","+ofToString(T4_ON_G3)+","+ofToString(T5_ON_G3)+","+ofToString(T6_ON_G3)+","+ofToString(T7_ON_G3)+","+ofToString(T8_ON_G3));
-
-    testSequence.push_back("#"+ofToString(T1_ON_B3));
-    testSequence.push_back("#"+ofToString(T1_ON_B3)+","+ofToString(T2_ON_B3));
-    testSequence.push_back("#"+ofToString(T1_ON_B3)+","+ofToString(T2_ON_B3)+","+ofToString(T3_ON_B3));
-    testSequence.push_back("#"+ofToString(T1_ON_B3)+","+ofToString(T2_ON_B3)+","+ofToString(T3_ON_B3)+","+ofToString(T4_ON_B3));
-    testSequence.push_back("#"+ofToString(T1_ON_B3)+","+ofToString(T2_ON_B3)+","+ofToString(T3_ON_B3)+","+ofToString(T4_ON_B3)+","+ofToString(T5_ON_B3));
-    testSequence.push_back("#"+ofToString(T1_ON_B3)+","+ofToString(T2_ON_B3)+","+ofToString(T3_ON_B3)+","+ofToString(T4_ON_B3)+","+ofToString(T5_ON_B3)+","+ofToString(T6_ON_B3));
-    testSequence.push_back("#"+ofToString(T1_ON_B3)+","+ofToString(T2_ON_B3)+","+ofToString(T3_ON_B3)+","+ofToString(T4_ON_B3)+","+ofToString(T5_ON_B3)+","+ofToString(T6_ON_B3)+","+ofToString(T7_ON_B3));
-    testSequence.push_back("#"+ofToString(T1_ON_B3)+","+ofToString(T2_ON_B3)+","+ofToString(T3_ON_B3)+","+ofToString(T4_ON_B3)+","+ofToString(T5_ON_B3)+","+ofToString(T6_ON_B3)+","+ofToString(T7_ON_B3)+","+ofToString(T8_ON_B3));
-
-    testSequence.push_back("#"+ofToString(T1_ON_R4));
-    testSequence.push_back("#"+ofToString(T1_ON_R4)+","+ofToString(T2_ON_R4));
-    testSequence.push_back("#"+ofToString(T1_ON_R4)+","+ofToString(T2_ON_R4)+","+ofToString(T3_ON_R4));
-    testSequence.push_back("#"+ofToString(T1_ON_R4)+","+ofToString(T2_ON_R4)+","+ofToString(T3_ON_R4)+","+ofToString(T4_ON_R4));
-    testSequence.push_back("#"+ofToString(T1_ON_R4)+","+ofToString(T2_ON_R4)+","+ofToString(T3_ON_R4)+","+ofToString(T4_ON_R4)+","+ofToString(T5_ON_R4));
-    testSequence.push_back("#"+ofToString(T1_ON_R4)+","+ofToString(T2_ON_R4)+","+ofToString(T3_ON_R4)+","+ofToString(T4_ON_R4)+","+ofToString(T5_ON_R4)+","+ofToString(T6_ON_R4));
-    testSequence.push_back("#"+ofToString(T1_ON_R4)+","+ofToString(T2_ON_R4)+","+ofToString(T3_ON_R4)+","+ofToString(T4_ON_R4)+","+ofToString(T5_ON_R4)+","+ofToString(T6_ON_R4)+","+ofToString(T7_ON_R4));
-    testSequence.push_back("#"+ofToString(T1_ON_R4)+","+ofToString(T2_ON_R4)+","+ofToString(T3_ON_R4)+","+ofToString(T4_ON_R4)+","+ofToString(T5_ON_R4)+","+ofToString(T6_ON_R4)+","+ofToString(T7_ON_R4)+","+ofToString(T8_ON_R4));
-
-    testSequence.push_back("#"+ofToString(T1_ON_G4));
-    testSequence.push_back("#"+ofToString(T1_ON_G4)+","+ofToString(T2_ON_G4));
-    testSequence.push_back("#"+ofToString(T1_ON_G4)+","+ofToString(T2_ON_G4)+","+ofToString(T3_ON_G4));
-    testSequence.push_back("#"+ofToString(T1_ON_G4)+","+ofToString(T2_ON_G4)+","+ofToString(T3_ON_G4)+","+ofToString(T4_ON_G4));
-    testSequence.push_back("#"+ofToString(T1_ON_G4)+","+ofToString(T2_ON_G4)+","+ofToString(T3_ON_G4)+","+ofToString(T4_ON_G4)+","+ofToString(T5_ON_G4));
-    testSequence.push_back("#"+ofToString(T1_ON_G4)+","+ofToString(T2_ON_G4)+","+ofToString(T3_ON_G4)+","+ofToString(T4_ON_G4)+","+ofToString(T5_ON_G4)+","+ofToString(T6_ON_G4));
-    testSequence.push_back("#"+ofToString(T1_ON_G4)+","+ofToString(T2_ON_G4)+","+ofToString(T3_ON_G4)+","+ofToString(T4_ON_G4)+","+ofToString(T5_ON_G4)+","+ofToString(T6_ON_G4)+","+ofToString(T7_ON_G4));
-    testSequence.push_back("#"+ofToString(T1_ON_G4)+","+ofToString(T2_ON_G4)+","+ofToString(T3_ON_G4)+","+ofToString(T4_ON_G4)+","+ofToString(T5_ON_G4)+","+ofToString(T6_ON_G4)+","+ofToString(T7_ON_G4)+","+ofToString(T8_ON_G4));
-
-    testSequence.push_back("#"+ofToString(T1_ON_B4));
-    testSequence.push_back("#"+ofToString(T1_ON_B4)+","+ofToString(T2_ON_B4));
-    testSequence.push_back("#"+ofToString(T1_ON_B4)+","+ofToString(T2_ON_B4)+","+ofToString(T3_ON_B4));
-    testSequence.push_back("#"+ofToString(T1_ON_B4)+","+ofToString(T2_ON_B4)+","+ofToString(T3_ON_B4)+","+ofToString(T4_ON_B4));
-    testSequence.push_back("#"+ofToString(T1_ON_B4)+","+ofToString(T2_ON_B4)+","+ofToString(T3_ON_B4)+","+ofToString(T4_ON_B4)+","+ofToString(T5_ON_B4));
-    testSequence.push_back("#"+ofToString(T1_ON_B4)+","+ofToString(T2_ON_B4)+","+ofToString(T3_ON_B4)+","+ofToString(T4_ON_B4)+","+ofToString(T5_ON_B4)+","+ofToString(T6_ON_B4));
-    testSequence.push_back("#"+ofToString(T1_ON_B4)+","+ofToString(T2_ON_B4)+","+ofToString(T3_ON_B4)+","+ofToString(T4_ON_B4)+","+ofToString(T5_ON_B4)+","+ofToString(T6_ON_B4)+","+ofToString(T7_ON_B4));
-    //    testSequence.push_back("#"+ofToString(T1_ON_B4)+","+ofToString(T2_ON_B4)+","+ofToString(T3_ON_B4)+","+ofToString(T4_ON_B4)+","+ofToString(T5_ON_B4)+","+ofToString(T6_ON_B4)+","+ofToString(T7_ON_B4)+","+ofToString(T8_ON_B4));
-
-    testSequence.push_back("#"+ofToString(ALL_ON_WHITE));
-    testSequence.push_back("#"+ofToString(ALL_OFF));
-    testSequence.push_back("#"+ofToString(ALL_ON_R1));
-    testSequence.push_back("#"+ofToString(ALL_ON_R2));
-    testSequence.push_back("#"+ofToString(ALL_ON_R3));
-    testSequence.push_back("#"+ofToString(ALL_ON_R4));
-    testSequence.push_back("#"+ofToString(ALL_ON_G1));
-    testSequence.push_back("#"+ofToString(ALL_ON_G2));
-    testSequence.push_back("#"+ofToString(ALL_ON_G3));
-    testSequence.push_back("#"+ofToString(ALL_ON_G4));
-    testSequence.push_back("#"+ofToString(ALL_ON_B1));
-    testSequence.push_back("#"+ofToString(ALL_ON_B2));
-    testSequence.push_back("#"+ofToString(ALL_ON_B3));
-    testSequence.push_back("#"+ofToString(ALL_ON_B4));
-    testSequence.push_back("#"+ofToString(ALL_OFF));
-    testSequence.push_back("#"+ofToString(ALL_ON_B4));
-    testSequence.push_back("#"+ofToString(ALL_ON_B3));
-    testSequence.push_back("#"+ofToString(ALL_ON_B2));
-    testSequence.push_back("#"+ofToString(ALL_ON_B1));
-    testSequence.push_back("#"+ofToString(ALL_ON_G4));
-    testSequence.push_back("#"+ofToString(ALL_ON_G3));
-    testSequence.push_back("#"+ofToString(ALL_ON_G2));
-    testSequence.push_back("#"+ofToString(ALL_ON_G1));
-    testSequence.push_back("#"+ofToString(ALL_ON_R4));
-    testSequence.push_back("#"+ofToString(ALL_ON_R3));
-    testSequence.push_back("#"+ofToString(ALL_ON_R2));
-    testSequence.push_back("#"+ofToString(ALL_ON_R1));
-
-}
+// *
+// * Setup the Tree objects
+// * The DMX Addresses are generated here
+// *
 //--------------------------------------------------------------
 void ofApp::setupTrees(int numberOfTrees)
 {
@@ -269,15 +59,25 @@ void ofApp::setupTrees(int numberOfTrees)
     }
 }
 //--------------------------------------------------------------
-void ofApp::timer1StartedHandler( int &args )
+void ofApp::idleTimerStarted(int &args)
 {
-
+    cout<<"Idle Timer Started!"<<endl;
 }
 //--------------------------------------------------------------
-void ofApp::timer1CompleteHandler( int &args )
+void ofApp::idleTimerCompleted(int &args)
 {
-    if (!debugLights) {
-//        lightBug.writeByte('r');
+    idle = false;
+    cout<<"Idle Timer Completed Resetting Lights!"<<endl;
+}
+//--------------------------------------------------------------
+void ofApp::readTimerStarted( int &args )
+{
+    
+}
+//--------------------------------------------------------------
+void ofApp::readTimerComplete( int &args )
+{
+    if (!debugLights && doneOnce) {
         messageBuffer = "";
         if (lightBug.available() > 0) {
             while(lightBug.available() > 0) {
@@ -285,7 +85,7 @@ void ofApp::timer1CompleteHandler( int &args )
                 if (*bytesReturned == '\n') {
                     cout << messageBuffer << endl;
                     onNewMessage(messageBuffer);
-
+                    
                     break;
                 }
                 else
@@ -442,20 +242,25 @@ void ofApp::onNewMessage(string message)
 //--------------------------------------------------------------
 void ofApp::setup()
 {
+    
     doneOnce = false;
-    counter = 0;
-    debugLights = false;
+    idle = true;
     openConfig("configFile.json");
     setupColors();
+    counter = 0;
+    setupTestSequence();
     setupTrees(8);
     setupDMX("/dev/ttyUSB0");
-    setupTestSequence();
     treeNames.loadFont("NewMedia Fett.ttf", 15);
-    timer1.setup( 1000 ) ;
-    timer1.start( true ) ;
-    ofAddListener( timer1.TIMER_COMPLETE , this, &ofApp::timer1CompleteHandler ) ;
-    ofAddListener( timer1.TIMER_STARTED , this, &ofApp::timer1StartedHandler ) ;
     lightBug.setup("/dev/ttyAMA0",19200);
+    readTimer.setup(1000) ;
+    readTimer.start(true) ;
+    ofAddListener(readTimer.TIMER_COMPLETE, this, &ofApp::readTimerComplete);
+    ofAddListener(readTimer.TIMER_STARTED, this, &ofApp::readTimerStarted);
+    idleTimer.setup(15000);
+    idleTimer.start(false);
+    ofAddListener(idleTimer.TIMER_COMPLETE, this, &ofApp::idleTimerCompleted) ;
+    ofAddListener(idleTimer.TIMER_STARTED, this, &ofApp::idleTimerStarted) ;
 }
 //--------------------------------------------------------------
 void ofApp::updateDMX()
@@ -470,20 +275,69 @@ void ofApp::updateDMX()
 //--------------------------------------------------------------
 void ofApp::update()
 {
-    timer1.update();
-    if (debugLights) {
+    readTimer.update();
+    idleTimer.update();
+    string command = "";
+    
+    if (!doneOnce) {
         if (counter > testSequence.size()-1) {
-            counter = 0;
+            counter = testSequence.size()-1;
+            for (int tr = 0; tr < trees.size();  tr++) {
+                trees[tr].setColor(OFF);
+            }
+            doneOnce = true;
         }
-
-        if(ofGetFrameNum() % 10 == 0) {
+        
+        if(ofGetFrameNum() % 5 == 0) {
+            messageBuffer = testSequence[counter];
             onNewMessage(testSequence[counter]);
             counter++;
         }
+        
+    }
+    
+    if (debugLights) {
+        
     }
     else {
         // This is the read mode
+        if (!idle) {
+            for (int tr = 0; tr < trees.size();  tr++) {
+                ofColor idleColor;
+                resetIdleColor = WHITE;
+                if (!trees[tr].getIsTreeOn()) {
+                    if (trees[tr].getColor() != resetIdleColor) {
+                        idleColor.set(trees[tr].getColor());
+                        if (idleColor.r < resetIdleColor.r) {
+                            idleColor.r += 1;
+                        }
+                        else if(idleColor.r > resetIdleColor.r) {
+                            idleColor.r -= 1;
+                        }
+                        
+                        if (idleColor.g < resetIdleColor.g) {
+                            idleColor.g += 1;
+                        }
+                        else if (idleColor.g > resetIdleColor.g) {
+                            idleColor.g -= 1;
+                        }
+                        if(idleColor.b < resetIdleColor.b) {
+                            idleColor.b += 1;
+                        }
+                        else if(idleColor.b > resetIdleColor.b) {
+                            idleColor.b -= 1;
+                        }
+                        trees[tr].setColor(idleColor);
+                    }
+                    else {
+                        trees[tr].setColor(resetIdleColor);
+                        idle = true;
+                    }
+                }
+            }
+        }
     }
+    
     updateDMX();
 }
 //--------------------------------------------------------------
@@ -496,7 +350,7 @@ void ofApp::draw()
         ofSetColor(255, 255, 255);
         treeNames.drawString(colorsArray[i].name, 40, (ofGetHeight()/2-(colorsArray.size()/2*25))+(i*25)+5);
     }
-
+    
     for (int i = 0; i < trees.size(); i++) {
         trees[i].draw((ofGetWidth()/2-(trees.size()/2*75))+(i*100), 100);
         ofSetColor(255);
@@ -508,6 +362,12 @@ void ofApp::draw()
         ofPopMatrix();
         ofPopMatrix();
     }
+    
+    string serialConnection = lightBug.isInitialized() ? "Connected" : "Not Connected";
+    string dmxConnection = enttecBox.isConnected() ? "Connected" : "Not Connected";
+    treeNames.drawString("DMX is " + dmxConnection, 150, ofGetHeight()/2);
+    treeNames.drawString("Serial is " +serialConnection, 150, ofGetHeight()/2 + 30);
+    treeNames.drawString("Incoming Command: " + messageBuffer, 150, ofGetHeight()/2+60);
     ofSetColor(255);
     ofPushMatrix();
     ofScale(2.5, 2.5);
@@ -524,3 +384,221 @@ void ofApp::exit()
 void ofApp::keyPressed(int key) {   }
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key) {   }
+//--------------------------------------------------------------
+void ofApp::setupTestSequence()
+{
+    testSequence.push_back("#"+ofToString(ALL_OFF));
+    testSequence.push_back("#"+ofToString(T1_ON_R1));
+    testSequence.push_back("#"+ofToString(T1_ON_R1)+","+ofToString(T2_ON_R1));
+    testSequence.push_back("#"+ofToString(T1_ON_R1)+","+ofToString(T2_ON_R1)+","+ofToString(T3_ON_R1));
+    testSequence.push_back("#"+ofToString(T1_ON_R1)+","+ofToString(T2_ON_R1)+","+ofToString(T3_ON_R1)+","+ofToString(T4_ON_R1));
+    testSequence.push_back("#"+ofToString(T1_ON_R1)+","+ofToString(T2_ON_R1)+","+ofToString(T3_ON_R1)+","+ofToString(T4_ON_R1)+","+ofToString(T5_ON_R1));
+    testSequence.push_back("#"+ofToString(T1_ON_R1)+","+ofToString(T2_ON_R1)+","+ofToString(T3_ON_R1)+","+ofToString(T4_ON_R1)+","+ofToString(T5_ON_R1)+","+ofToString(T6_ON_R1));
+    testSequence.push_back("#"+ofToString(T1_ON_R1)+","+ofToString(T2_ON_R1)+","+ofToString(T3_ON_R1)+","+ofToString(T4_ON_R1)+","+ofToString(T5_ON_R1)+","+ofToString(T6_ON_R1)+","+ofToString(T7_ON_R1));
+    testSequence.push_back("#"+ofToString(T1_ON_R1)+","+ofToString(T2_ON_R1)+","+ofToString(T3_ON_R1)+","+ofToString(T4_ON_R1)+","+ofToString(T5_ON_R1)+","+ofToString(T6_ON_R1)+","+ofToString(T7_ON_R1)+","+ofToString(T8_ON_R1));
+
+    testSequence.push_back("#"+ofToString(T1_ON_G1));
+    testSequence.push_back("#"+ofToString(T1_ON_G1)+","+ofToString(T2_ON_G1));
+    testSequence.push_back("#"+ofToString(T1_ON_G1)+","+ofToString(T2_ON_G1)+","+ofToString(T3_ON_G1));
+    testSequence.push_back("#"+ofToString(T1_ON_G1)+","+ofToString(T2_ON_G1)+","+ofToString(T3_ON_G1)+","+ofToString(T4_ON_G1));
+    testSequence.push_back("#"+ofToString(T1_ON_G1)+","+ofToString(T2_ON_G1)+","+ofToString(T3_ON_G1)+","+ofToString(T4_ON_G1)+","+ofToString(T5_ON_G1));
+    testSequence.push_back("#"+ofToString(T1_ON_G1)+","+ofToString(T2_ON_G1)+","+ofToString(T3_ON_G1)+","+ofToString(T4_ON_G1)+","+ofToString(T5_ON_G1)+","+ofToString(T6_ON_G1));
+    testSequence.push_back("#"+ofToString(T1_ON_G1)+","+ofToString(T2_ON_G1)+","+ofToString(T3_ON_G1)+","+ofToString(T4_ON_G1)+","+ofToString(T5_ON_G1)+","+ofToString(T6_ON_G1)+","+ofToString(T7_ON_G1));
+    testSequence.push_back("#"+ofToString(T1_ON_G1)+","+ofToString(T2_ON_G1)+","+ofToString(T3_ON_G1)+","+ofToString(T4_ON_G1)+","+ofToString(T5_ON_G1)+","+ofToString(T6_ON_G1)+","+ofToString(T7_ON_G1)+","+ofToString(T8_ON_G1));
+
+    testSequence.push_back("#"+ofToString(T1_ON_B1));
+    testSequence.push_back("#"+ofToString(T1_ON_B1)+","+ofToString(T2_ON_B1));
+    testSequence.push_back("#"+ofToString(T1_ON_B1)+","+ofToString(T2_ON_B1)+","+ofToString(T3_ON_B1));
+    testSequence.push_back("#"+ofToString(T1_ON_B1)+","+ofToString(T2_ON_B1)+","+ofToString(T3_ON_B1)+","+ofToString(T4_ON_B1));
+    testSequence.push_back("#"+ofToString(T1_ON_B1)+","+ofToString(T2_ON_B1)+","+ofToString(T3_ON_B1)+","+ofToString(T4_ON_B1)+","+ofToString(T5_ON_B1));
+    testSequence.push_back("#"+ofToString(T1_ON_B1)+","+ofToString(T2_ON_B1)+","+ofToString(T3_ON_B1)+","+ofToString(T4_ON_B1)+","+ofToString(T5_ON_B1)+","+ofToString(T6_ON_B1));
+    testSequence.push_back("#"+ofToString(T1_ON_B1)+","+ofToString(T2_ON_B1)+","+ofToString(T3_ON_B1)+","+ofToString(T4_ON_B1)+","+ofToString(T5_ON_B1)+","+ofToString(T6_ON_B1)+","+ofToString(T7_ON_B1));
+    testSequence.push_back("#"+ofToString(T1_ON_B1)+","+ofToString(T2_ON_B1)+","+ofToString(T3_ON_B1)+","+ofToString(T4_ON_B1)+","+ofToString(T5_ON_B1)+","+ofToString(T6_ON_B1)+","+ofToString(T7_ON_B1)+","+ofToString(T8_ON_B1));
+
+    testSequence.push_back("#"+ofToString(T1_ON_R2));
+    testSequence.push_back("#"+ofToString(T1_ON_R2)+","+ofToString(T2_ON_R2));
+    testSequence.push_back("#"+ofToString(T1_ON_R2)+","+ofToString(T2_ON_R2)+","+ofToString(T3_ON_R2));
+    testSequence.push_back("#"+ofToString(T1_ON_R2)+","+ofToString(T2_ON_R2)+","+ofToString(T3_ON_R2)+","+ofToString(T4_ON_R2));
+    testSequence.push_back("#"+ofToString(T1_ON_R2)+","+ofToString(T2_ON_R2)+","+ofToString(T3_ON_R2)+","+ofToString(T4_ON_R2)+","+ofToString(T5_ON_R2));
+    testSequence.push_back("#"+ofToString(T1_ON_R2)+","+ofToString(T2_ON_R2)+","+ofToString(T3_ON_R2)+","+ofToString(T4_ON_R2)+","+ofToString(T5_ON_R2)+","+ofToString(T6_ON_R2));
+    testSequence.push_back("#"+ofToString(T1_ON_R2)+","+ofToString(T2_ON_R2)+","+ofToString(T3_ON_R2)+","+ofToString(T4_ON_R2)+","+ofToString(T5_ON_R2)+","+ofToString(T6_ON_R2)+","+ofToString(T7_ON_R2));
+    testSequence.push_back("#"+ofToString(T1_ON_R2)+","+ofToString(T2_ON_R2)+","+ofToString(T3_ON_R2)+","+ofToString(T4_ON_R2)+","+ofToString(T5_ON_R2)+","+ofToString(T6_ON_R2)+","+ofToString(T7_ON_R2)+","+ofToString(T8_ON_R2));
+
+    testSequence.push_back("#"+ofToString(T1_ON_G2));
+    testSequence.push_back("#"+ofToString(T1_ON_G2)+","+ofToString(T2_ON_G2));
+    testSequence.push_back("#"+ofToString(T1_ON_G2)+","+ofToString(T2_ON_G2)+","+ofToString(T3_ON_G2));
+    testSequence.push_back("#"+ofToString(T1_ON_G2)+","+ofToString(T2_ON_G2)+","+ofToString(T3_ON_G2)+","+ofToString(T4_ON_G2));
+    testSequence.push_back("#"+ofToString(T1_ON_G2)+","+ofToString(T2_ON_G2)+","+ofToString(T3_ON_G2)+","+ofToString(T4_ON_G2)+","+ofToString(T5_ON_G2));
+    testSequence.push_back("#"+ofToString(T1_ON_G2)+","+ofToString(T2_ON_G2)+","+ofToString(T3_ON_G2)+","+ofToString(T4_ON_G2)+","+ofToString(T5_ON_G2)+","+ofToString(T6_ON_G2));
+    testSequence.push_back("#"+ofToString(T1_ON_G2)+","+ofToString(T2_ON_G2)+","+ofToString(T3_ON_G2)+","+ofToString(T4_ON_G2)+","+ofToString(T5_ON_G2)+","+ofToString(T6_ON_G2)+","+ofToString(T7_ON_G2));
+    testSequence.push_back("#"+ofToString(T1_ON_G2)+","+ofToString(T2_ON_G2)+","+ofToString(T3_ON_G2)+","+ofToString(T4_ON_G2)+","+ofToString(T5_ON_G2)+","+ofToString(T6_ON_G2)+","+ofToString(T7_ON_G2)+","+ofToString(T8_ON_G2));
+
+    testSequence.push_back("#"+ofToString(T1_ON_B2));
+    testSequence.push_back("#"+ofToString(T1_ON_B2)+","+ofToString(T2_ON_B2));
+    testSequence.push_back("#"+ofToString(T1_ON_B2)+","+ofToString(T2_ON_B2)+","+ofToString(T3_ON_B2));
+    testSequence.push_back("#"+ofToString(T1_ON_B2)+","+ofToString(T2_ON_B2)+","+ofToString(T3_ON_B2)+","+ofToString(T4_ON_B2));
+    testSequence.push_back("#"+ofToString(T1_ON_B2)+","+ofToString(T2_ON_B2)+","+ofToString(T3_ON_B2)+","+ofToString(T4_ON_B2)+","+ofToString(T5_ON_B2));
+    testSequence.push_back("#"+ofToString(T1_ON_B2)+","+ofToString(T2_ON_B2)+","+ofToString(T3_ON_B2)+","+ofToString(T4_ON_B2)+","+ofToString(T5_ON_B2)+","+ofToString(T6_ON_B2));
+    testSequence.push_back("#"+ofToString(T1_ON_B2)+","+ofToString(T2_ON_B2)+","+ofToString(T3_ON_B2)+","+ofToString(T4_ON_B2)+","+ofToString(T5_ON_B2)+","+ofToString(T6_ON_B2)+","+ofToString(T7_ON_B2));
+    testSequence.push_back("#"+ofToString(T1_ON_B2)+","+ofToString(T2_ON_B2)+","+ofToString(T3_ON_B2)+","+ofToString(T4_ON_B2)+","+ofToString(T5_ON_B2)+","+ofToString(T6_ON_B2)+","+ofToString(T7_ON_B2)+","+ofToString(T8_ON_B2));
+
+    testSequence.push_back("#"+ofToString(T1_ON_R3));
+    testSequence.push_back("#"+ofToString(T1_ON_R3)+","+ofToString(T2_ON_R3));
+    testSequence.push_back("#"+ofToString(T1_ON_R3)+","+ofToString(T2_ON_R3)+","+ofToString(T3_ON_R3));
+    testSequence.push_back("#"+ofToString(T1_ON_R3)+","+ofToString(T2_ON_R3)+","+ofToString(T3_ON_R3)+","+ofToString(T4_ON_R3));
+    testSequence.push_back("#"+ofToString(T1_ON_R3)+","+ofToString(T2_ON_R3)+","+ofToString(T3_ON_R3)+","+ofToString(T4_ON_R3)+","+ofToString(T5_ON_R3));
+    testSequence.push_back("#"+ofToString(T1_ON_R3)+","+ofToString(T2_ON_R3)+","+ofToString(T3_ON_R3)+","+ofToString(T4_ON_R3)+","+ofToString(T5_ON_R3)+","+ofToString(T6_ON_R3));
+    testSequence.push_back("#"+ofToString(T1_ON_R3)+","+ofToString(T2_ON_R3)+","+ofToString(T3_ON_R3)+","+ofToString(T4_ON_R3)+","+ofToString(T5_ON_R3)+","+ofToString(T6_ON_R3)+","+ofToString(T7_ON_R3));
+    testSequence.push_back("#"+ofToString(T1_ON_R3)+","+ofToString(T2_ON_R3)+","+ofToString(T3_ON_R3)+","+ofToString(T4_ON_R3)+","+ofToString(T5_ON_R3)+","+ofToString(T6_ON_R3)+","+ofToString(T7_ON_R3)+","+ofToString(T8_ON_R3));
+
+    testSequence.push_back("#"+ofToString(T1_ON_G3));
+    testSequence.push_back("#"+ofToString(T1_ON_G3)+","+ofToString(T2_ON_G3));
+    testSequence.push_back("#"+ofToString(T1_ON_G3)+","+ofToString(T2_ON_G3)+","+ofToString(T3_ON_G3));
+    testSequence.push_back("#"+ofToString(T1_ON_G3)+","+ofToString(T2_ON_G3)+","+ofToString(T3_ON_G3)+","+ofToString(T4_ON_G3));
+    testSequence.push_back("#"+ofToString(T1_ON_G3)+","+ofToString(T2_ON_G3)+","+ofToString(T3_ON_G3)+","+ofToString(T4_ON_G3)+","+ofToString(T5_ON_G3));
+    testSequence.push_back("#"+ofToString(T1_ON_G3)+","+ofToString(T2_ON_G3)+","+ofToString(T3_ON_G3)+","+ofToString(T4_ON_G3)+","+ofToString(T5_ON_G3)+","+ofToString(T6_ON_G3));
+    testSequence.push_back("#"+ofToString(T1_ON_G3)+","+ofToString(T2_ON_G3)+","+ofToString(T3_ON_G3)+","+ofToString(T4_ON_G3)+","+ofToString(T5_ON_G3)+","+ofToString(T6_ON_G3)+","+ofToString(T7_ON_G3));
+    testSequence.push_back("#"+ofToString(T1_ON_G3)+","+ofToString(T2_ON_G3)+","+ofToString(T3_ON_G3)+","+ofToString(T4_ON_G3)+","+ofToString(T5_ON_G3)+","+ofToString(T6_ON_G3)+","+ofToString(T7_ON_G3)+","+ofToString(T8_ON_G3));
+
+    testSequence.push_back("#"+ofToString(T1_ON_B3));
+    testSequence.push_back("#"+ofToString(T1_ON_B3)+","+ofToString(T2_ON_B3));
+    testSequence.push_back("#"+ofToString(T1_ON_B3)+","+ofToString(T2_ON_B3)+","+ofToString(T3_ON_B3));
+    testSequence.push_back("#"+ofToString(T1_ON_B3)+","+ofToString(T2_ON_B3)+","+ofToString(T3_ON_B3)+","+ofToString(T4_ON_B3));
+    testSequence.push_back("#"+ofToString(T1_ON_B3)+","+ofToString(T2_ON_B3)+","+ofToString(T3_ON_B3)+","+ofToString(T4_ON_B3)+","+ofToString(T5_ON_B3));
+    testSequence.push_back("#"+ofToString(T1_ON_B3)+","+ofToString(T2_ON_B3)+","+ofToString(T3_ON_B3)+","+ofToString(T4_ON_B3)+","+ofToString(T5_ON_B3)+","+ofToString(T6_ON_B3));
+    testSequence.push_back("#"+ofToString(T1_ON_B3)+","+ofToString(T2_ON_B3)+","+ofToString(T3_ON_B3)+","+ofToString(T4_ON_B3)+","+ofToString(T5_ON_B3)+","+ofToString(T6_ON_B3)+","+ofToString(T7_ON_B3));
+    testSequence.push_back("#"+ofToString(T1_ON_B3)+","+ofToString(T2_ON_B3)+","+ofToString(T3_ON_B3)+","+ofToString(T4_ON_B3)+","+ofToString(T5_ON_B3)+","+ofToString(T6_ON_B3)+","+ofToString(T7_ON_B3)+","+ofToString(T8_ON_B3));
+
+    testSequence.push_back("#"+ofToString(T1_ON_R4));
+    testSequence.push_back("#"+ofToString(T1_ON_R4)+","+ofToString(T2_ON_R4));
+    testSequence.push_back("#"+ofToString(T1_ON_R4)+","+ofToString(T2_ON_R4)+","+ofToString(T3_ON_R4));
+    testSequence.push_back("#"+ofToString(T1_ON_R4)+","+ofToString(T2_ON_R4)+","+ofToString(T3_ON_R4)+","+ofToString(T4_ON_R4));
+    testSequence.push_back("#"+ofToString(T1_ON_R4)+","+ofToString(T2_ON_R4)+","+ofToString(T3_ON_R4)+","+ofToString(T4_ON_R4)+","+ofToString(T5_ON_R4));
+    testSequence.push_back("#"+ofToString(T1_ON_R4)+","+ofToString(T2_ON_R4)+","+ofToString(T3_ON_R4)+","+ofToString(T4_ON_R4)+","+ofToString(T5_ON_R4)+","+ofToString(T6_ON_R4));
+    testSequence.push_back("#"+ofToString(T1_ON_R4)+","+ofToString(T2_ON_R4)+","+ofToString(T3_ON_R4)+","+ofToString(T4_ON_R4)+","+ofToString(T5_ON_R4)+","+ofToString(T6_ON_R4)+","+ofToString(T7_ON_R4));
+    testSequence.push_back("#"+ofToString(T1_ON_R4)+","+ofToString(T2_ON_R4)+","+ofToString(T3_ON_R4)+","+ofToString(T4_ON_R4)+","+ofToString(T5_ON_R4)+","+ofToString(T6_ON_R4)+","+ofToString(T7_ON_R4)+","+ofToString(T8_ON_R4));
+
+    testSequence.push_back("#"+ofToString(T1_ON_G4));
+    testSequence.push_back("#"+ofToString(T1_ON_G4)+","+ofToString(T2_ON_G4));
+    testSequence.push_back("#"+ofToString(T1_ON_G4)+","+ofToString(T2_ON_G4)+","+ofToString(T3_ON_G4));
+    testSequence.push_back("#"+ofToString(T1_ON_G4)+","+ofToString(T2_ON_G4)+","+ofToString(T3_ON_G4)+","+ofToString(T4_ON_G4));
+    testSequence.push_back("#"+ofToString(T1_ON_G4)+","+ofToString(T2_ON_G4)+","+ofToString(T3_ON_G4)+","+ofToString(T4_ON_G4)+","+ofToString(T5_ON_G4));
+    testSequence.push_back("#"+ofToString(T1_ON_G4)+","+ofToString(T2_ON_G4)+","+ofToString(T3_ON_G4)+","+ofToString(T4_ON_G4)+","+ofToString(T5_ON_G4)+","+ofToString(T6_ON_G4));
+    testSequence.push_back("#"+ofToString(T1_ON_G4)+","+ofToString(T2_ON_G4)+","+ofToString(T3_ON_G4)+","+ofToString(T4_ON_G4)+","+ofToString(T5_ON_G4)+","+ofToString(T6_ON_G4)+","+ofToString(T7_ON_G4));
+    testSequence.push_back("#"+ofToString(T1_ON_G4)+","+ofToString(T2_ON_G4)+","+ofToString(T3_ON_G4)+","+ofToString(T4_ON_G4)+","+ofToString(T5_ON_G4)+","+ofToString(T6_ON_G4)+","+ofToString(T7_ON_G4)+","+ofToString(T8_ON_G4));
+
+    testSequence.push_back("#"+ofToString(T1_ON_B4));
+    testSequence.push_back("#"+ofToString(T1_ON_B4)+","+ofToString(T2_ON_B4));
+    testSequence.push_back("#"+ofToString(T1_ON_B4)+","+ofToString(T2_ON_B4)+","+ofToString(T3_ON_B4));
+    testSequence.push_back("#"+ofToString(T1_ON_B4)+","+ofToString(T2_ON_B4)+","+ofToString(T3_ON_B4)+","+ofToString(T4_ON_B4));
+    testSequence.push_back("#"+ofToString(T1_ON_B4)+","+ofToString(T2_ON_B4)+","+ofToString(T3_ON_B4)+","+ofToString(T4_ON_B4)+","+ofToString(T5_ON_B4));
+    testSequence.push_back("#"+ofToString(T1_ON_B4)+","+ofToString(T2_ON_B4)+","+ofToString(T3_ON_B4)+","+ofToString(T4_ON_B4)+","+ofToString(T5_ON_B4)+","+ofToString(T6_ON_B4));
+    testSequence.push_back("#"+ofToString(T1_ON_B4)+","+ofToString(T2_ON_B4)+","+ofToString(T3_ON_B4)+","+ofToString(T4_ON_B4)+","+ofToString(T5_ON_B4)+","+ofToString(T6_ON_B4)+","+ofToString(T7_ON_B4));
+    //    testSequence.push_back("#"+ofToString(T1_ON_B4)+","+ofToString(T2_ON_B4)+","+ofToString(T3_ON_B4)+","+ofToString(T4_ON_B4)+","+ofToString(T5_ON_B4)+","+ofToString(T6_ON_B4)+","+ofToString(T7_ON_B4)+","+ofToString(T8_ON_B4));
+
+    testSequence.push_back("#"+ofToString(ALL_ON_WHITE));
+    testSequence.push_back("#"+ofToString(ALL_OFF));
+    testSequence.push_back("#"+ofToString(ALL_ON_R1));
+    testSequence.push_back("#"+ofToString(ALL_ON_R2));
+    testSequence.push_back("#"+ofToString(ALL_ON_R3));
+    testSequence.push_back("#"+ofToString(ALL_ON_R4));
+    testSequence.push_back("#"+ofToString(ALL_ON_G1));
+    testSequence.push_back("#"+ofToString(ALL_ON_G2));
+    testSequence.push_back("#"+ofToString(ALL_ON_G3));
+    testSequence.push_back("#"+ofToString(ALL_ON_G4));
+    testSequence.push_back("#"+ofToString(ALL_ON_B1));
+    testSequence.push_back("#"+ofToString(ALL_ON_B2));
+    testSequence.push_back("#"+ofToString(ALL_ON_B3));
+    testSequence.push_back("#"+ofToString(ALL_ON_B4));
+    testSequence.push_back("#"+ofToString(ALL_OFF));
+    testSequence.push_back("#"+ofToString(ALL_ON_B4));
+    testSequence.push_back("#"+ofToString(ALL_ON_B3));
+    testSequence.push_back("#"+ofToString(ALL_ON_B2));
+    testSequence.push_back("#"+ofToString(ALL_ON_B1));
+    testSequence.push_back("#"+ofToString(ALL_ON_G4));
+    testSequence.push_back("#"+ofToString(ALL_ON_G3));
+    testSequence.push_back("#"+ofToString(ALL_ON_G2));
+    testSequence.push_back("#"+ofToString(ALL_ON_G1));
+    testSequence.push_back("#"+ofToString(ALL_ON_R4));
+    testSequence.push_back("#"+ofToString(ALL_ON_R3));
+    testSequence.push_back("#"+ofToString(ALL_ON_R2));
+    testSequence.push_back("#"+ofToString(ALL_ON_R1));
+
+}
+//--------------------------------------------------------------
+void ofApp::setupColors()
+{
+    colors r1;
+    r1.c = RED_1;
+    r1.name = "Red 1";
+
+    colors r2;
+    r2.c = RED_2;
+    r2.name = "Red 2";
+
+    colors r3;
+    r3.c = RED_3;
+    r3.name = "Red 3";
+
+    colors r4;
+    r4.c = RED_4;
+    r4.name = "Red 4";
+
+    colors g1;
+    g1.c = GREEN_1;
+    g1.name = "Green 1";
+
+    colors g2;
+    g2.c = GREEN_2;
+    g2.name = "Green 2";
+
+    colors g3;
+    g3.c = GREEN_3;
+    g3.name = "Green 3";
+
+    colors g4;
+    g4.c = GREEN_4;
+    g4.name = "Green 4";
+
+    colors b1;
+    b1.c = BLUE_1;
+    b1.name = "Blue 1";
+
+    colors b2;
+    b2.c = BLUE_2;
+    b2.name = "Blue 2";
+
+    colors b3;
+    b3.c = BLUE_3;
+    b3.name = "Blue 3";
+
+    colors b4;
+    b4.c = BLUE_4;
+    b4.name = "Blue 4";
+
+    colors w;
+    w.c = WHITE;
+    w.name = "White";
+
+    colors bl;
+    bl.c = OFF;
+    bl.name = "Black";
+
+    colorsArray.push_back(r1);
+    colorsArray.push_back(r2);
+    colorsArray.push_back(r3);
+    colorsArray.push_back(r4);
+
+    colorsArray.push_back(g1);
+    colorsArray.push_back(g2);
+    colorsArray.push_back(g3);
+    colorsArray.push_back(g4);
+
+    colorsArray.push_back(b1);
+    colorsArray.push_back(b2);
+    colorsArray.push_back(b3);
+    colorsArray.push_back(b4);
+
+    colorsArray.push_back(w);
+    colorsArray.push_back(bl);
+}

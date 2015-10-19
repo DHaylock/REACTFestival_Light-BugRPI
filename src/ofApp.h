@@ -252,7 +252,16 @@ public:
 
     ofTrueTypeFont treeNames;
 
-    ofxSimpleTimer timer1 ;
-    void timer1CompleteHandler( int &args ) ;
-    void timer1StartedHandler( int &args ) ;
+    ofColor activeColor;
+    ofColor resetIdleColor;
+    
+    ofxSimpleTimer readTimer;
+    ofxSimpleTimer idleTimer;
+    bool idle;
+    
+    void        readTimerComplete(int &args) ;
+    void        readTimerStarted(int &args) ;
+    
+    void        idleTimerCompleted(int &args);
+    void        idleTimerStarted(int &args);
 };
