@@ -103,7 +103,7 @@ void ofApp::readTimerComplete( int &args )
 void ofApp::onNewMessage(string message)
 {
     bool validString = false;
-    cout << "New Message: " << message << "\n";
+    cout << "onNewMessage, message: " << message << "\n";
     if (message.size() > 0) {
         string vS = message.substr(0,1);
         if (vS == "#") {
@@ -121,122 +121,146 @@ void ofApp::onNewMessage(string message)
             validString = true;
         }
     }
-
     // If the string is valid continue
+    // Loop through the commands
+    // Loop through the Trees
+    // If the FIRST character is equal to a number
+    // If the command is longer than 0 continue
+    // This is where we decide what color to set the trees
     if (validString) {
-
-        // Loop through the commands
         for (int i = 0; i < split.size(); i++) {
-
-            // Loop through the Trees
             for(int e = 1; e <= trees.size(); e++) {
-
-                // If the FIRST character is equal to a number
                 if (split[i].substr(0,1) == ofToString(e)) {
-
-                    // If the command is longer than 0 continue
                     if (split[i].length() > 0) {
-
-                        // This is where we decide what color to set the trees
                         if (split[i].substr(2,1) == "R") {
                             if (split[i].substr(3,1) == "1") {
                                 trees[e-1].setColor(RED_1);
+                                trees[e-1].setIsTreeOn(true);
                             }
                             else if (split[i].substr(3,1) == "2") {
                                 trees[e-1].setColor(RED_2);
+                                trees[e-1].setIsTreeOn(true);
                             }
                             else if (split[i].substr(3,1) == "3") {
                                 trees[e-1].setColor(RED_3);
+                                trees[e-1].setIsTreeOn(true);
                             }
                             else if (split[i].substr(3,1) == "4") {
                                 trees[e-1].setColor(RED_4);
+                                trees[e-1].setIsTreeOn(true);
                             }
                         }
                         else if (split[i].substr(2,1) == "G") {
                             if (split[i].substr(3,1) == "1") {
                                 trees[e-1].setColor(GREEN_1);
+                                trees[e-1].setIsTreeOn(true);
                             }
                             else if (split[i].substr(3,1) == "2") {
                                 trees[e-1].setColor(GREEN_2);
+                                trees[e-1].setIsTreeOn(true);
                             }
                             else if (split[i].substr(3,1) == "3") {
                                 trees[e-1].setColor(GREEN_3);
+                                trees[e-1].setIsTreeOn(true);
                             }
                             else if (split[i].substr(3,1) == "4") {
                                 trees[e-1].setColor(GREEN_4);
+                                trees[e-1].setIsTreeOn(true);
                             }
                         }
                         else if (split[i].substr(2,1) == "B") {
                             if (split[i].substr(3,1) == "1") {
                                 trees[e-1].setColor(BLUE_1);
+                                trees[e-1].setIsTreeOn(true);
                             }
                             else if (split[i].substr(3,1) == "2") {
                                 trees[e-1].setColor(BLUE_2);
+                                trees[e-1].setIsTreeOn(true);
                             }
                             else if (split[i].substr(3,1) == "3") {
                                 trees[e-1].setColor(BLUE_3);
+                                trees[e-1].setIsTreeOn(true);
                             }
                             else if (split[i].substr(3,1) == "4") {
                                 trees[e-1].setColor(BLUE_4);
+                                trees[e-1].setIsTreeOn(true);
                             }
                         }
                         else if (split[i].substr(2,2) == "WH") {
                             trees[e-1].setColor(WHITE);
+                            trees[e-1].setIsTreeOn(true);
                         }
                         else if (split[i].substr(2,2) == "FF") {
                             trees[e-1].setColor(OFF);
+                            trees[e-1].setIsTreeOn(false);
                         }
                     }
                 }
-                // If we get a A command set all the lights to the specified color
                 else if (split[i].substr(0,1) == "A") {
                     for (int tr = 0; tr < trees.size();  tr++) {
                         if (split[i].substr(2,2) == "WH") {
                             trees[tr].setColor(WHITE);
+                            trees[tr].setIsTreeOn(true);
                         }
                         else if (split[i].substr(2,2) == "FF") {
                             trees[tr].setColor(OFF);
+                            trees[tr].setIsTreeOn(false);
+                            
                         }
                         else if (split[i].substr(2,2) == "R1") {
                             trees[tr].setColor(RED_1);
+                            trees[tr].setIsTreeOn(true);
                         }
                         else if (split[i].substr(2,2) == "R2") {
                             trees[tr].setColor(RED_2);
+                            trees[tr].setIsTreeOn(true);
                         }
                         else if (split[i].substr(2,2) == "R3") {
                             trees[tr].setColor(RED_3);
+                            trees[tr].setIsTreeOn(true);
                         }
                         else if (split[i].substr(2,2) == "R4") {
                             trees[tr].setColor(RED_4);
+                            trees[tr].setIsTreeOn(true);
                         }
                         else if (split[i].substr(2,2) == "G1") {
                             trees[tr].setColor(GREEN_1);
+                            trees[tr].setIsTreeOn(true);
                         }
                         else if (split[i].substr(2,2) == "G2") {
                             trees[tr].setColor(GREEN_2);
+                            trees[tr].setIsTreeOn(true);
                         }
                         else if (split[i].substr(2,2) == "G3") {
                             trees[tr].setColor(GREEN_3);
+                            trees[tr].setIsTreeOn(true);
                         }
                         else if (split[i].substr(2,2) == "G4") {
                             trees[tr].setColor(GREEN_4);
+                            trees[tr].setIsTreeOn(true);
                         }
                         else if (split[i].substr(2,2) == "B1") {
                             trees[tr].setColor(BLUE_1);
+                            trees[tr].setIsTreeOn(true);
                         }
                         else if (split[i].substr(2,2) == "B2") {
                             trees[tr].setColor(BLUE_2);
+                            trees[tr].setIsTreeOn(true);
                         }
                         else if (split[i].substr(2,2) == "B3") {
                             trees[tr].setColor(BLUE_3);
+                            trees[tr].setIsTreeOn(true);
                         }
                         else if (split[i].substr(2,2) == "B4") {
                             trees[tr].setColor(BLUE_4);
+                            trees[tr].setIsTreeOn(true);
                         }
                     }
                 }
             }
         }
+        idleTimer.setup(15000);
+        idleTimer.start(false);
     }
 }
 //--------------------------------------------------------------
