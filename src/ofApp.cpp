@@ -295,11 +295,12 @@ void ofApp::setup()
     readTimer.start(true) ;
     ofAddListener(readTimer.TIMER_COMPLETE, this, &ofApp::readTimerComplete);
     ofAddListener(readTimer.TIMER_STARTED, this, &ofApp::readTimerStarted);
-//    idleTimer.setup(15000);
+    idleTimer.setup(15000);
 //    idleTimer.start(false);
     ofAddListener(idleTimer.TIMER_COMPLETE, this, &ofApp::idleTimerCompleted) ;
     ofAddListener(idleTimer.TIMER_STARTED, this, &ofApp::idleTimerStarted) ;
     
+    resetTimer.setup(7000);
     ofAddListener(resetTimer.TIMER_COMPLETE, this, &ofApp::resetTimerCompleted);
     ofAddListener(resetTimer.TIMER_STARTED, this, &ofApp::resetTimerStarted);
 }
