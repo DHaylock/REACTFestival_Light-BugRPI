@@ -59,59 +59,70 @@ void ofApp::setupTrees(int numberOfTrees)
     }
 }
 //--------------------------------------------------------------
-void ofApp::resetTimerStarted(int &args)
+void ofApp::gotMessage(ofMessage msg)
 {
-    cout<<"Reset Timer Started!"<<endl;
-}
-//--------------------------------------------------------------
-void ofApp::resetTimerCompleted(int &args)
-{
-    cout<<"Reset Timer Completed!"<<endl;
-    reset = false;
-}
-//--------------------------------------------------------------
-void ofApp::idleTimerStarted(int &args)
-{
-    cout<<"Idle Timer Started!"<<endl;
-}
-//--------------------------------------------------------------
-void ofApp::idleTimerCompleted(int &args)
-{
-    idle = false;
-    cout<<"Idle Timer Completed Showing Win Lights!"<<endl;
-    resetTimer.setup(7000);
-    resetTimer.start(false);
-}
-//--------------------------------------------------------------
-void ofApp::readTimerStarted( int &args )
-{
-    
-}
-//--------------------------------------------------------------
-void ofApp::readTimerComplete( int &args )
-{
-    if (!debugLights && doneOnce) {
-        messageBuffer = "";
-        if (lightBug.available() > 0) {
-            while(lightBug.available() > 0) {
-                lightBug.readBytes(bytesReturned, 1);
-                if (*bytesReturned == '\n') {
-                    cout << messageBuffer << endl;
-                    onNewMessage(messageBuffer);
-                    
-                    break;
-                }
-                else
-                {
-                    if (*bytesReturned != '\n') {
-                        messageBuffer += *bytesReturned;
+    if (msg.message == "Read Timer Finished") {
+        if (!debugLights && doneOnce) {
+            messageBuffer = "";
+            if (lightBug.available() > 0) {
+                while(lightBug.available() > 0) {
+                    lightBug.readBytes(bytesReturned, 1);
+                    if (*bytesReturned == '\n') {
+                        cout << messageBuffer << endl;
+                        onNewMessage(messageBuffer);
+                        break;
+                    }
+                    else
+                    {
+                        if (*bytesReturned != '\n') {
+                            messageBuffer += *bytesReturned;
+                        }
                     }
                 }
+                memset(bytesReturned, 0, 1);
             }
-            memset(bytesReturned, 0, 1);
         }
     }
+    else if (msg.message == "Idle Timer Finished") {
+        cout << msg.message << endl;
+        idle = false;
+    }
+    else if (msg.message == "Idle Timer Started") {
+        cout << msg.message << endl;
+    }
+    else if (msg.message == "Reset Timer Finished") {
+        cout << msg.message << endl;
+        reset = false;
+    }
+    else if (msg.message == "Reset Timer Started") {
+        cout << msg.message << endl;
+    }
 }
+////--------------------------------------------------------------
+//void ofApp::readTimerComplete( int &args )
+//{
+//    if (!debugLights && doneOnce) {
+//        messageBuffer = "";
+//        if (lightBug.available() > 0) {
+//            while(lightBug.available() > 0) {
+//                lightBug.readBytes(bytesReturned, 1);
+//                if (*bytesReturned == '\n') {
+//                    cout << messageBuffer << endl;
+//                    onNewMessage(messageBuffer);
+//                    
+//                    break;
+//                }
+//                else
+//                {
+//                    if (*bytesReturned != '\n') {
+//                        messageBuffer += *bytesReturned;
+//                    }
+//                }
+//            }
+//            memset(bytesReturned, 0, 1);
+//        }
+//    }
+//}
 //--------------------------------------------------------------
 void ofApp::onNewMessage(string message)
 {
@@ -141,6 +152,7 @@ void ofApp::onNewMessage(string message)
     // If the command is longer than 0 continue
     // This is where we decide what color to set the trees
     if (validString) {
+        idleTimer.stop();
         for (int i = 0; i < split.size(); i++) {
             for(int e = 1; e <= trees.size(); e++) {
                 if (split[i].substr(0,1) == ofToString(e)) {
@@ -272,8 +284,7 @@ void ofApp::onNewMessage(string message)
                 }
             }
         }
-        idleTimer.setup(15000);
-        idleTimer.start(false);
+        idleTimer.start();
     }
 }
 //--------------------------------------------------------------
@@ -291,18 +302,27 @@ void ofApp::setup()
     setupDMX("/dev/ttyUSB0");
     treeNames.loadFont("NewMedia Fett.ttf", 15);
     lightBug.setup("/dev/ttyAMA0",19200);
-    readTimer.setup(1000) ;
-    readTimer.start(true) ;
-    ofAddListener(readTimer.TIMER_COMPLETE, this, &ofApp::readTimerComplete);
-    ofAddListener(readTimer.TIMER_STARTED, this, &ofApp::readTimerStarted);
-    idleTimer.setup(15000);
-//    idleTimer.start(false);
-    ofAddListener(idleTimer.TIMER_COMPLETE, this, &ofApp::idleTimerCompleted) ;
-    ofAddListener(idleTimer.TIMER_STARTED, this, &ofApp::idleTimerStarted) ;
+
     
-    resetTimer.setup(7000);
-    ofAddListener(resetTimer.TIMER_COMPLETE, this, &ofApp::resetTimerCompleted);
-    ofAddListener(resetTimer.TIMER_STARTED, this, &ofApp::resetTimerStarted);
+    
+    readTimer.setup(1000, "Read Timer", true);
+    readTimer.start();
+    
+    idleTimer.setup(15000, "Idle Timer", false);
+    resetTimer.setup(5000, "Reset Timer", false);
+    
+    //    readTimer.setup(1000) ;
+//    readTimer.start(true) ;
+//    ofAddListener(readTimer.TIMER_COMPLETE, this, &ofApp::readTimerComplete);
+//    ofAddListener(readTimer.TIMER_STARTED, this, &ofApp::readTimerStarted);
+//    idleTimer.setup(15000);
+////    idleTimer.start(false);
+//    ofAddListener(idleTimer.TIMER_COMPLETE, this, &ofApp::idleTimerCompleted) ;
+//    ofAddListener(idleTimer.TIMER_STARTED, this, &ofApp::idleTimerStarted) ;
+//    
+//    resetTimer.setup(7000);
+//    ofAddListener(resetTimer.TIMER_COMPLETE, this, &ofApp::resetTimerCompleted);
+//    ofAddListener(resetTimer.TIMER_STARTED, this, &ofApp::resetTimerStarted);
 }
 //--------------------------------------------------------------
 void ofApp::updateDMX()

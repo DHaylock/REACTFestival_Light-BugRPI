@@ -3,8 +3,9 @@
 #include "ofMain.h"
 #include "ofxDmx.h"
 #include "ofxJSON.h"
-#include "ofxSimpleTimer.h"
+//#include "ofxSimpleTimer.h"
 #include "tree.h"
+#include "MyTimer.h"
 
 //------------------------------------------------
 // *
@@ -191,7 +192,7 @@ public:
 
     void keyPressed(int key);
     void keyReleased(int key);
-
+    void gotMessage(ofMessage msg);
 
     // Trees
     void setupTrees(int numberOfTrees);
@@ -255,19 +256,23 @@ public:
     ofColor activeColor;
     ofColor resetIdleColor;
     
-    ofxSimpleTimer readTimer;
-    ofxSimpleTimer idleTimer;
-    ofxSimpleTimer resetTimer;
+//    ofxSimpleTimer readTimer;
+//    ofxSimpleTimer idleTimer;
+//    ofxSimpleTimer resetTimer;
+    
+    MyTimer     readTimer;
+    MyTimer     idleTimer;
+    MyTimer     resetTimer;
 
     bool idle;
     bool reset;
     
-    void        readTimerComplete(int &args) ;
-    void        readTimerStarted(int &args) ;
-    
-    void        idleTimerCompleted(int &args);
-    void        idleTimerStarted(int &args);
-    
-    void        resetTimerCompleted(int &args);
-    void        resetTimerStarted(int &args);
+//    void        readTimerComplete(int &args) ;
+//    void        readTimerStarted(int &args) ;
+//    
+//    void        idleTimerCompleted(int &args);
+//    void        idleTimerStarted(int &args);
+//    
+//    void        resetTimerCompleted(int &args);
+//    void        resetTimerStarted(int &args);
 };
