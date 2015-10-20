@@ -86,6 +86,7 @@ void ofApp::gotMessage(ofMessage msg)
     else if (msg.message == "Idle Timer Finished") {
         cout << msg.message << endl;
         idle = false;
+        resetTimer.start();
     }
     else if (msg.message == "Idle Timer Started") {
         cout << msg.message << endl;
