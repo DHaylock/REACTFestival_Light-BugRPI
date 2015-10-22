@@ -21,7 +21,9 @@ After either sshing in or using a monitor and keyboard, move into the directory.
 
 Then
 
-````make run````
+````make````
+
+
 
 ####Connections
 You will need to plug the DMXPro into the RPI via the USB Hub, its address is generally /dev/ttyUSB0
