@@ -3,9 +3,9 @@
 #include "ofMain.h"
 #include "ofxDmx.h"
 #include "ofxJSON.h"
-//#include "ofxSimpleTimer.h"
-#include "tree.h"
 #include "MyTimer.h"
+#include "tree.h"
+#include "ofxGui.h"
 
 //------------------------------------------------
 // *
@@ -176,66 +176,82 @@
 #define T8_OFF "8OFF"
 
 
+//----------------------------------
 struct colors {
     string name;
     ofColor c;
 };
+
 //------------------------------------------------
 class ofApp : public ofBaseApp{
-
+    
 public:
     void setup();
     void update();
     void draw();
-
+    
     void exit();
-
+    
     void keyPressed(int key);
     void keyReleased(int key);
     void gotMessage(ofMessage msg);
-
+    
+    //----------------------------------
     // Trees
+    //----------------------------------
     void setupTrees(int numberOfTrees);
     vector <Tree> trees;
-
+    int noTrees;
+    
+    //----------------------------------
     // DMX Stuff
+    //----------------------------------
     void setupDMX(string device);
     void updateDMX();
     void drawDMX();
-
+    
     ofxDmx enttecBox;
     bool dmxConnected;
-
+    
+    //----------------------------------
     // Serial/UART IN
+    //----------------------------------
     void setupLightBugConnection(string device,int baud);
     void updateLightBug();
-
+    
     ofSerial lightBug;
     void onNewMessage(string message);
     bool		requestRead;
     unsigned char	bytesReturned[1];
     string messageBuffer;
-
+    
+    
     void setupTestSequence();
     vector<string> testSequence;
-
     vector <string> split;
     bool doneOnce;
-
+    
+    //----------------------------------
     // Load the Config File
+    //----------------------------------
     void openConfig(string configFile);
     ofxJSONElement config;
-
     string serialInLightBug;
     string dmxController;
     int lightBugBaud;
     bool debugLights;
-
-    // Make the colors
+    
+    
+    int counter;
+    int counterSpeed;
+    
+    
+    //----------------------------------
+    // Colors
+    //----------------------------------
     void setupColors();
     vector <colors> colorsArray;
-    int counter;
-
+    
     ofColor RED_1;
     ofColor RED_2;
     ofColor RED_3;
@@ -250,29 +266,36 @@ public:
     ofColor BLUE_4;
     ofColor WHITE;
     ofColor OFF;
-
-    ofTrueTypeFont treeNames;
-
+    
     ofColor activeColor;
     ofColor resetIdleColor;
     
-//    ofxSimpleTimer readTimer;
-//    ofxSimpleTimer idleTimer;
-//    ofxSimpleTimer resetTimer;
     
+    ofTrueTypeFont treeNames;
+    
+    
+    //----------------------------------
+    // GUI
+    //----------------------------------
+    bool showGui;
+    void setupGUI();
+    
+    ofxPanel gui;
+    ofParameterGroup parameters;
+    
+    //----------------------------------
+    // Timers
+    //----------------------------------
     MyTimer     readTimer;
     MyTimer     idleTimer;
     MyTimer     resetTimer;
-
+    MyTimer     debugTimer;
+    
     bool idle;
     bool reset;
     
-//    void        readTimerComplete(int &args) ;
-//    void        readTimerStarted(int &args) ;
-//    
-//    void        idleTimerCompleted(int &args);
-//    void        idleTimerStarted(int &args);
-//    
-//    void        resetTimerCompleted(int &args);
-//    void        resetTimerStarted(int &args);
+    int idleTime;
+    int resetTime;
+    int debugTime;
+    //----------------------------------
 };
