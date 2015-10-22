@@ -8,7 +8,7 @@
 
 #include "MyTimer.h"
 
-
+//--------------------------------------------------------------
 void MyTimer::setup(float timerLength,string timerName,bool loop)
 {
     bTimerReached = true;
@@ -16,17 +16,15 @@ void MyTimer::setup(float timerLength,string timerName,bool loop)
     _timerLength = timerLength;
     _timerName = timerName;
 }
-
+//--------------------------------------------------------------
 void MyTimer::update()
 {
-    
     float timer = ofGetElapsedTimeMillis() - startTime;
     
     if (!bTimerReached) {
         timeLeft = _timerLength - timer;        
     }
 
-    
     if (timer >= _timerLength && !bTimerReached) {
         bTimerReached = true;
         ofMessage msg(_timerName + " Finished");
@@ -35,14 +33,13 @@ void MyTimer::update()
             start();
         }
     }
-    
 }
-
+//--------------------------------------------------------------
 void MyTimer::draw(int x, int y)
 {
     ofDrawBitmapString(ofToString(timeLeft), x,y);
 }
-
+//--------------------------------------------------------------
 void MyTimer::start()
 {
     if (bTimerReached) {
@@ -52,8 +49,9 @@ void MyTimer::start()
         startTime = ofGetElapsedTimeMillis();
     }
 }
-
+//--------------------------------------------------------------
 void MyTimer::stop( )
 {
     bTimerReached = true;
+    _loop = false;
 }
