@@ -7,14 +7,17 @@
 //
 
 #include "ofMain.h"
+#include "ofParameterGroup.h"
+#include "ofParameter.h"
 
 //--------------------------------------------------------------
 class Tree {
     
 public:
     //--------------------------------------------------------------
-    void setup(int id,int addressStart, int numChannels = 3)
+    void setup(int id,int addressStart, int numChannels = 3,bool debugWithGui = false)
     {
+        
         _id = id;
         _on = false;
         _address = addressStart;
@@ -22,11 +25,18 @@ public:
         cout << "Tree" << endl;
         cout << "ID: " << id << endl;
         cout << "Start Channel: " <<  addressStart << endl;
+        _debugWithGui = debugWithGui;
+        
+        if (debugWithGui) {
+            parameters.setName("Tree "+ofToString(id));
+            color.set("Color",ofColor(127),ofColor(0,0),ofColor(255));
+            parameters.add(color);
+        }
     }
     //--------------------------------------------------------------
     void update()
     {
-        
+        setColor(color);
     }
     //--------------------------------------------------------------
     void draw(int x, int y)
@@ -45,8 +55,6 @@ public:
     //--------------------------------------------------------------
     void setColor(ofColor c)
     {
-//        cout << "ID: " << _id << " Original Color " << getColor() << endl;
-//        cout << "ID: " << _id << " New Color " << c << endl;
         _C = c;
     }
     //--------------------------------------------------------------
@@ -59,7 +67,10 @@ public:
         return _address;
     }
     
+    ofParameterGroup parameters;
+    ofParameter<ofColor> color;
 private:
+    
     
 protected:
     ofColor _C;
@@ -67,4 +78,5 @@ protected:
     int _id;
     int _address;
     bool _on;
+    bool _debugWithGui;
 };
