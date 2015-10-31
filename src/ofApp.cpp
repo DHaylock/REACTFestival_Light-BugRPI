@@ -16,8 +16,10 @@ void ofApp::openConfig(string configFile)
     debugLights = config["debug"]["debugLights"].asBool();
     debugTime = config["debug"]["debugtimer"].asInt();
     
-    serialInLightBug = config["lightbug"]["baud"].asString();
-    lightBugBaud = config["lightbug"]["serialaddress"].asInt();
+    dmxController = config["serialaddresses"]["dmxcontrolleraddress"].asString();
+
+    serialInLightBug = config["serialaddresses"]["lightbug"]["serialaddress"].asString();
+    lightBugBaud = config["serialaddresses"]["lightbug"]["baud"].asInt();
     
     idleTime = config["timers"]["idletime"].asInt();
     resetTime = config["timers"]["resettime"].asInt();
@@ -49,7 +51,7 @@ void ofApp::setupDMX(string device)
 {
     enttecBox.connect(device);
     if (!enttecBox.isConnected()) {
-        cout << "DMX not connected" << endl;
+        cout << "DMX not connected: " << device << endl;
         dmxConnected = false;
     }
     else {

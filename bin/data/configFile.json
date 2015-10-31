@@ -2,14 +2,14 @@
     "serialaddresses": {
         "dmxcontrolleraddress": "/dev/ttyUSB0",
         "lightbug": {
-            "serialaddress": "/dev/ttyAMA0",
-            "baud": 19200
+            "serialaddress": "/dev/ttyUSB1",
+            "baud": 115200
         }
     },
     "numberoftrees": 8,
-    "showGui": true,
+    "showGui": false,
     "debug": {
-        "debugLights": true,
+        "debugLights": false,
         "debugtimer": 50
     },
     "timers": {
