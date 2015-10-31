@@ -238,6 +238,8 @@ public:
     ofxJSONElement config;
     string serialInLightBug;
     string dmxController;
+    int dmxChannels;            // Channels per light
+    int dmxOffset;              // Offset of red channel per light
     int lightBugBaud;
     bool debugLights;
     

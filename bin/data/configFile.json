@@ -6,7 +6,11 @@
             "baud": 115200
         }
     },
-    "numberoftrees": 8,
+    "numberoftrees": 7,
+    "dmxlight": {
+        "channels": 8,
+        "offset": 5
+    },
     "showGui": false,
     "debug": {
         "debugLights": false,

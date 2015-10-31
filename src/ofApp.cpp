@@ -17,6 +17,8 @@ void ofApp::openConfig(string configFile)
     debugTime = config["debug"]["debugtimer"].asInt();
     
     dmxController = config["serialaddresses"]["dmxcontrolleraddress"].asString();
+    dmxChannels = config["dmxlight"]["channels"].asInt();
+    dmxOffset = config["dmxlight"]["offset"].asInt();
 
     serialInLightBug = config["serialaddresses"]["lightbug"]["serialaddress"].asString();
     lightBugBaud = config["serialaddresses"]["lightbug"]["baud"].asInt();
@@ -49,7 +51,17 @@ void ofApp::openConfig(string configFile)
 //--------------------------------------------------------------
 void ofApp::setupDMX(string device)
 {
-    enttecBox.connect(device);
+    // Allow for an extra tree so we can use DMX address tricks to make
+    // some lights pretend to be others (eg Dragons instead of LEDj Quads)
+    const int channels = (noTrees+1) * dmxChannels + dmxOffset;
+
+    cout << "DMX trees: " << noTrees << endl
+         << "DMX channels/tree: " << dmxChannels << endl
+         << "DMX offset/tree: " << dmxOffset << endl
+         << "DMX channels: " << channels << endl;
+
+    enttecBox.connect(device, channels);
+
     if (!enttecBox.isConnected()) {
         cout << "DMX not connected: " << device << endl;
         dmxConnected = false;
@@ -67,21 +79,24 @@ void ofApp::setupDMX(string device)
 //--------------------------------------------------------------
 void ofApp::setupTrees(int numberOfTrees)
 {
-    for (int ch = 1; ch < (numberOfTrees*3); ch += 3) {
-        Tree t;
-        t.setup((ch/3)+1, ch,3,showGui);
-        trees.push_back(t);
+    for ( int id = 1; id <= numberOfTrees; ++id ) {
+        Tree tree;
+        tree.setup( id, (id-1) * dmxChannels + dmxOffset, 3, showGui );
+        trees.push_back( tree );
     }
 }
 //--------------------------------------------------------------
 void ofApp::onNewMessage(string message)
 {
     bool validString = false;
-    cout << "onNewMessage, message: " << message << "\n";
+    cout << "onNewMessage, message: " << message << endl;
     if (message.size() > 0) {
-        string vS = message.substr(0,1);
-        if (vS == "#") {
-            string cut = message.substr(1,message.length());
+
+        // ignore any cruft before the actual message
+        size_t hashPos = message.find( '#' );
+        if( hashPos != string::npos ) {
+            string cut = message.substr( hashPos + 1 );
+
             split.clear();
             split = ofSplitString(cut, ",");
             for(int i = 0; i < split.size(); i++) {
