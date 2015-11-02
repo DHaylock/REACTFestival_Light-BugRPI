@@ -1,0 +1,175 @@
+#!/bin/bash
+
+# Start and stop lightbugtrees
+#
+# Copyright Tarim 2015
+#
+# Lightbug Startup is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Lightbug Startup is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with Lightbug Startup.  If not, see <http://www.gnu.org/licenses/>.
+
+Prefix="cmd_"
+shopt -s nullglob
+Me=$(basename $0)
+
+PGIDFile="/tmp/${Me}.pgid"
+MyDir="/home/pi/${Me}"
+LogFile="/home/pi/logs/${Me}.log"
+
+
+
+# err
+# echo an error and exit
+err() {
+    echo "$*" 1>&2
+    exit 1
+}
+
+# executable PROGRAM
+# check if it's runable
+executable() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# cmd_help [COMMAND [all]]
+# Help
+#
+cmd_help() {
+    case "$1" in
+    "")
+	StartPattern="/^# ${Prefix}/"
+	EndPattern=""
+	;;
+    "all")
+	StartPattern="/^# ${Prefix}/"
+	EndPattern=",/^${Prefix}/"
+	;;
+    *)
+	StartPattern="/^# ${Prefix}$1 /"
+	EndPattern=",/^${Prefix}/"
+	;;
+    esac
+
+    awk -v me="$(basename $0) " -v spacer="  " "
+	${StartPattern}${EndPattern} {
+	    if( sub( /^# ?/, spacer ) ) {
+		found=1
+		sub( /^ *${Prefix}/, me )
+		print
+	    }
+	}
+	END {
+	    if( !found ) exit(2)
+	}
+    " < "$0" || {
+	err "No help topic"
+    }
+}
+
+
+
+# cmd_run
+# Run daemon
+#
+cmd_run() {
+    local DMXSerial="/dev/ttyenttec"
+    local LightBugSerial="/dev/ttylightbug"
+    local RunCmd="REACTFestival_Light-BugRPI"
+    local RunDir="/home/pi/openFrameworks/apps/myApps/${RunCmd}/bin/"
+
+    stty raw -echo -echoe -echok -echoctl -echoke  < ${DMXSerial}
+    stty 115200 raw -echo -echoe -echok -echoctl -echoke  < ${LightBugSerial}
+    
+    cd "${RunDir}"
+    ./${RunCmd}
+}
+
+
+
+# cmd_start
+# Start daemon
+#
+cmd_start() {
+    session -watchdog "${PGIDFile}" "$0" run >> "${LogFile}" 2>&1
+}
+
+
+
+# cmd_status
+# Status of daemon
+# If running gives a list of the processes, otherwise says, "Not running"
+#
+cmd_status() {
+    session -status "${PGIDFile}" || {
+	echo "Not running"
+	return 1
+    }
+}
+
+
+
+# cmd_stop
+# Stop daemon
+#
+cmd_stop() {
+    session -kill -sigterm "${PGIDFile}" 
+    sleep 1
+    session -kill -sigkill "${PGIDFile}"
+    rm -rf "${PGIDFile}"
+}
+
+
+
+
+
+
+# cmd_reboot
+# reboot the Pi
+#
+cmd_reboot() {
+    sudo shutdown -r now
+}
+
+# cmd_halt
+# halt the Pi
+#
+cmd_halt() {
+    sudo halt
+}
+
+
+
+
+
+
+# test
+# test code
+#
+cmd_test() {
+    echo testing...
+}
+
+
+
+# main
+
+[ "X$1" = "X--test" ] && {
+    Tst=echo
+    shift
+}
+
+[ "$#" -eq 0 ] && err "See $(basename $0) help for details"
+
+Cmd="$1"
+shift
+
+"cmd_${Cmd}" "$@"

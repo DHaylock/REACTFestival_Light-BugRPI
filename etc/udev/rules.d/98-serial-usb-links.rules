@@ -1,0 +1,4 @@
+# Add links for Enttec DMX controller and LightBug swing
+
+ACTION=="add", SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ATTRS{serial}=="EN150288", SYMLINK+="ttyenttec"
+ACTION=="add", SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", ATTRS{serial}=="PAiPSUv2", SYMLINK+="ttylightbug"

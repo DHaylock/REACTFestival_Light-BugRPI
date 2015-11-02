@@ -1,8 +1,8 @@
 {
     "serialaddresses": {
-        "dmxcontrolleraddress": "/dev/ttyUSB0",
+        "dmxcontrolleraddress": "/dev/ttyenttec",
         "lightbug": {
-            "serialaddress": "/dev/ttyUSB1",
+            "serialaddress": "/dev/ttylightbug",
             "baud": 115200
         }
     },
