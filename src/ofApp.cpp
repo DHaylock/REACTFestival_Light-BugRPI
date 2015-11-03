@@ -65,6 +65,7 @@ void ofApp::setupDMX(string device)
     if (!enttecBox.isConnected()) {
         cout << "DMX not connected: " << device << endl;
         dmxConnected = false;
+        ofExit( 1 );
     }
     else {
         dmxConnected = true;
@@ -93,7 +94,7 @@ void ofApp::onNewMessage(string message)
     if (message.size() > 0) {
 
         // ignore any cruft before the actual message
-        size_t hashPos = message.find( '#' );
+        const size_t hashPos = message.find( '#' );
         if( hashPos != string::npos ) {
             string cut = message.substr( hashPos + 1 );
 
@@ -302,7 +303,13 @@ void ofApp::updateDMX()
         enttecBox.setLevel(trees[i].getAddresses()+1,trees[i].getColor().g);
         enttecBox.setLevel(trees[i].getAddresses()+2,trees[i].getColor().b);
     }
+
+    errno = 0;
     enttecBox.update();
+    if( errno ) {
+        cout << "Enttec write error: " << strerror( errno ) << endl;
+        ofExit( 1 );
+    }
 }
 //--------------------------------------------------------------
 void ofApp::update()
@@ -446,9 +453,21 @@ void ofApp::gotMessage(ofMessage msg)
     if (msg.message == "Read Timer Finished") {
         if (!debugLights && doneOnce) {
             messageBuffer = "";
-            if (lightBug.available() > 0) {
+
+	    int result = lightBug.available();
+	    if( result == OF_SERIAL_ERROR ) {
+		cout << "lightbug serial available error" << endl;
+		ofExit( 1 );
+	    }
+
+            if ( result > 0 ) {
                 while(lightBug.available() > 0) {
-                    lightBug.readBytes(bytesReturned, 1);
+
+                    if( lightBug.readBytes(bytesReturned, 1) == OF_SERIAL_ERROR ) {
+                        cout << "lightbug serial read error" << endl;
+                        ofExit( 1 );
+                    }
+
                     if (*bytesReturned == '\n') {
                         cout << messageBuffer << endl;
                         onNewMessage(messageBuffer);
