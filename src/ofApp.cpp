@@ -39,7 +39,7 @@ void ofApp::openConfig(string configFile)
     BLUE_3 = ofColor(config["colors"][10]["blue3"]["r"].asInt(),config["colors"][10]["blue3"]["g"].asInt(),config["colors"][10]["blue3"]["b"].asInt());
     BLUE_4 = ofColor(config["colors"][11]["blue4"]["r"].asInt(),config["colors"][11]["blue4"]["g"].asInt(),config["colors"][11]["blue4"]["b"].asInt());
     
-    WHITE = ofColor(config["colors"][12]["white"]["r"].asInt(),config["colors"][12]["white"]["g"].asInt(),config["colors"][12]["white"]["b"].asInt());
+    WHITE = ofColor(config["colors"][12]["white"]["r"].asInt(),config["colors"][12]["white"]["g"].asInt(),config["colors"][12]["white"]["b"].asInt());
     
     OFF = ofColor(0,0,0);
 }
