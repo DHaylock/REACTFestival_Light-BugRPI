@@ -382,7 +382,19 @@ obj/linuxarmv6l/Release/src/main.o: src/main.cpp \
  ../../../libs/openFrameworks/video/ofGstVideoPlayer.h \
  ../../../libs/openFrameworks/3d/ofCamera.h \
  ../../../libs/openFrameworks/3d/ofEasyCam.h src/ofApp.h \
- ../../../addons/ofxDmx/src/ofxDmx.h
+ ../../../addons/ofxDmx/src/ofxDmx.h \
+ ../../../addons/ofxJSON/src/ofxJSON.h \
+ ../../../addons/ofxJSON/libs/jsoncpp/include/json/json.h \
+ ../../../addons/ofxJSON/src/ofxJSONElement.h src/MyTimer.h src/tree.h \
+ ../../../addons/ofxGui/src/ofxGui.h \
+ ../../../addons/ofxGui/src/ofxToggle.h \
+ ../../../addons/ofxGui/src/ofxBaseGui.h \
+ ../../../addons/ofxGui/src/ofxSlider.h \
+ ../../../addons/ofxGui/src/ofxSliderGroup.h \
+ ../../../addons/ofxGui/src/ofxGuiGroup.h \
+ ../../../addons/ofxGui/src/ofxButton.h \
+ ../../../addons/ofxGui/src/ofxPanel.h \
+ ../../../addons/ofxGui/src/ofxLabel.h
 
 ../../../libs/openFrameworks/ofMain.h:
 
@@ -1195,3 +1207,31 @@ obj/linuxarmv6l/Release/src/main.o: src/main.cpp \
 src/ofApp.h:
 
 ../../../addons/ofxDmx/src/ofxDmx.h:
+
+../../../addons/ofxJSON/src/ofxJSON.h:
+
+../../../addons/ofxJSON/libs/jsoncpp/include/json/json.h:
+
+../../../addons/ofxJSON/src/ofxJSONElement.h:
+
+src/MyTimer.h:
+
+src/tree.h:
+
+../../../addons/ofxGui/src/ofxGui.h:
+
+../../../addons/ofxGui/src/ofxToggle.h:
+
+../../../addons/ofxGui/src/ofxBaseGui.h:
+
+../../../addons/ofxGui/src/ofxSlider.h:
+
+../../../addons/ofxGui/src/ofxSliderGroup.h:
+
+../../../addons/ofxGui/src/ofxGuiGroup.h:
+
+../../../addons/ofxGui/src/ofxButton.h:
+
+../../../addons/ofxGui/src/ofxPanel.h:
+
+../../../addons/ofxGui/src/ofxLabel.h:

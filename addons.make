@@ -1,2 +1,3 @@
 ofxDmx
 ofxJSON
+ofxGui
